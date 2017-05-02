@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Github on Lei Dong | 董磊</title>
+    <link>/tags/github/</link>
+    <description>Recent content in Github on Lei Dong | 董磊</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Apr 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mac Install Jekyll | Mac安装Jekyll配置Github</title>
+      <link>/2015/04/mac-install-jekyll--mac%E5%AE%89%E8%A3%85jekyll%E9%85%8D%E7%BD%AEgithub/</link>
+      <pubDate>Thu, 02 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/2015/04/mac-install-jekyll--mac%E5%AE%89%E8%A3%85jekyll%E9%85%8D%E7%BD%AEgithub/</guid>
+      <description>因为电脑硬件换了，所以之前本地配置好的Jekyll什么的都没有了，需要再搞一遍，但官网上给出的安装说明实在太过简单，十有八九是安装不上的。在这里把“艰辛”的重装过程存个档。
+Step 1: 安装Ruby 2.1 OSX 我升级到Yosemite之后自带的是2.0版本的Ruby，Jekyll安装需要2.1以上才行，在Terminal里查看Ruby版本的命令是：
+ruby -v ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin14]  在安装Ruby之前需要先装好Xcode（Apple Store有下载，安装包很大），并且在Terminal中装好command line:
+xcode-select --install  我看网上都推荐两个常用工具来安装管理这些开发环境，一个是Homebrew，安装方法如下：
+ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  另一个是rvm，可以管理Ruby的版本：
+\curl -sSL https://get.rvm.io | bash -s stable  需要说明的是，如果从老系统升级到Yosemite的话，装过Homebrew和MacTex Live的电脑升级过程会非常慢。
+装完rvm可以查看下需要的安装文件，及有没有什么问题。
+rvm requirements brew doctor  不管有没有什么问题，都可以先试试直接开始装，不行再回头Google
+rvm install 2.1.2  如果要换回2.0.0，只需要输入
+rvm use 2.0.0 --default  Step 2: 安装Jekyll 这步非常简单
+gem install jekyll  Step 3: 配置Github 基本思路是要把Github上之前的东西同步回来，涉及到设ssh密钥等一系列过程，官网给出了不错的讲解。</description>
+    </item>
+    
+  </channel>
+</rss>

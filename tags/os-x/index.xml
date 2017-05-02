@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Os X on Lei Dong | 董磊</title>
+    <link>/tags/os-x/</link>
+    <description>Recent content in Os X on Lei Dong | 董磊</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Apr 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/os-x/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mac Install Jekyll | Mac安装Jekyll配置Github</title>
+      <link>/2015/04/mac-install-jekyll--mac%E5%AE%89%E8%A3%85jekyll%E9%85%8D%E7%BD%AEgithub/</link>
+      <pubDate>Thu, 02 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/2015/04/mac-install-jekyll--mac%E5%AE%89%E8%A3%85jekyll%E9%85%8D%E7%BD%AEgithub/</guid>
+      <description>因为电脑硬件换了，所以之前本地配置好的Jekyll什么的都没有了，需要再搞一遍，但官网上给出的安装说明实在太过简单，十有八九是安装不上的。在这里把“艰辛”的重装过程存个档。
+Step 1: 安装Ruby 2.1 OSX 我升级到Yosemite之后自带的是2.0版本的Ruby，Jekyll安装需要2.1以上才行，在Terminal里查看Ruby版本的命令是：
+ruby -v ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin14]  在安装Ruby之前需要先装好Xcode（Apple Store有下载，安装包很大），并且在Terminal中装好command line:
+xcode-select --install  我看网上都推荐两个常用工具来安装管理这些开发环境，一个是Homebrew，安装方法如下：
+ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  另一个是rvm，可以管理Ruby的版本：
+\curl -sSL https://get.rvm.io | bash -s stable  需要说明的是，如果从老系统升级到Yosemite的话，装过Homebrew和MacTex Live的电脑升级过程会非常慢。
+装完rvm可以查看下需要的安装文件，及有没有什么问题。
+rvm requirements brew doctor  不管有没有什么问题，都可以先试试直接开始装，不行再回头Google
+rvm install 2.1.2  如果要换回2.0.0，只需要输入
+rvm use 2.0.0 --default  Step 2: 安装Jekyll 这步非常简单
+gem install jekyll  Step 3: 配置Github 基本思路是要把Github上之前的东西同步回来，涉及到设ssh密钥等一系列过程，官网给出了不错的讲解。</description>
+    </item>
+    
+    <item>
+      <title>Mac Update SSD and Ram | Mac硬盘内存升级攻略</title>
+      <link>/2015/03/mac-update-ssd-and-ram--mac%E7%A1%AC%E7%9B%98%E5%86%85%E5%AD%98%E5%8D%87%E7%BA%A7%E6%94%BB%E7%95%A5/</link>
+      <pubDate>Mon, 30 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/2015/03/mac-update-ssd-and-ram--mac%E7%A1%AC%E7%9B%98%E5%86%85%E5%AD%98%E5%8D%87%E7%BA%A7%E6%94%BB%E7%95%A5/</guid>
+      <description>相信很多人笔记本用了三四年就会变得非常慢，换电脑不仅是笔不小的开支，熟悉新电脑也需要花时间。那么何不试试升级一下老笔记本，旧貌变新颜，重新获得飞一样的使用感受。
+【注意】：操作有风险，出现问题本文不负责。
+前几天奇异果好奇OSX 10.10 Yosemite系统是种什么样的使用体验，就升级了一把，谁知道no zuo no die，why you try。升级完系统后，电脑出现症状，休眠之后无法唤醒，重起之后无法进入系统。还好奇异果升级前及时备份了所有数据！（一定要养成经常备份的好习惯。）用U盘引导启动后用磁盘修复工具一检查，提示磁盘有错误，建议格式化重装。Oh,卖糕的！
+水果君用的电脑是2011年的15‘MacBook Pro（early 2011款），服役了近四年，又经常拿它算模拟、跑程序，4G的内存严重吃紧，老硬盘的读写速度也极大制约了速度。水果君心一横，一不做，二不休，趁重装电脑的时机，把硬件也更新一下，体验一把站在风口的猪——飞一般的感觉。
+Step 1 制做U盘启动盘 要格式化重装，需要首先制做一个启动盘，OS X的系统免费了，可以从Apple Store上直接下载Yosemite，5G多，8G的U盘就可以装下。下载完成后需要以下操作：
+ 格式化U盘。打开&amp;rdquo;磁盘工具&amp;rdquo;，左边选择要格式化的U盘，右边点抹掉，格式选择第一个，名称保持Untitled（这个主要是为了和后面对应）。（如图1）   打开终端（Terminal，见图2），里面输入如下内容：   sudo /Applications/Install OS X Yosemite.app/Contents/Resources/createinstallmedia &amp;ndash;volume /Volumes/Untitled &amp;ndash;applicationpath /Applications/Install OS X Yosemite.app &amp;ndash;nointeraction
+  上面这段的意思是把从Apple Store下载的Yosemite用createinstallmedia这个工具放到名为Untitled的U盘里做成启动盘。[^1]  Step 2 买硬件 我是从美国Amazon上买的，算上税和京东差不多，主要是SSD硬盘，内存和放到光驱的硬盘托，外加一个多功能螺丝刀。
+硬盘： 品牌
+当时备选的有两款，三星和Kingston，三星价格更贵一些，读写速度快一些，保修好像是五年，Kingston是三年，读写慢10%左右。考虑到这次升级估计也就最多再用三四年，选了Kingston，不过之前看升级攻略，网上大多数教程用的是三星。硬件这个东西，一份钱一份货，可以根据实际情况选择。
+容量
+容易备选是250G和500G两个等级，Kingston比较坑的是只有240G和480G两个选择，比三星略小些。最后选择的是kingston的240G的，把500G的电脑上原来的硬盘也用上，240+500的组合对目前来说够用。（三星容量的还有各种不同版本，价格也差异不少。）
+当时比较的是以下两款：
+Samsung 850 EVO 250GB 2.5-Inch SATA III Internal SSD (MZ-75E250B/AM)
+Kingston Digital 240GB SSDNow V300 SATA 3 2.</description>
+    </item>
+    
+  </channel>
+</rss>

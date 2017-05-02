@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jekyll on Lei Dong | 董磊</title>
+    <link>/tags/jekyll/</link>
+    <description>Recent content in Jekyll on Lei Dong | 董磊</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Apr 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/jekyll/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mac Install Jekyll | Mac安装Jekyll配置Github</title>
+      <link>/2015/04/mac-install-jekyll--mac%E5%AE%89%E8%A3%85jekyll%E9%85%8D%E7%BD%AEgithub/</link>
+      <pubDate>Thu, 02 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/2015/04/mac-install-jekyll--mac%E5%AE%89%E8%A3%85jekyll%E9%85%8D%E7%BD%AEgithub/</guid>
+      <description>因为电脑硬件换了，所以之前本地配置好的Jekyll什么的都没有了，需要再搞一遍，但官网上给出的安装说明实在太过简单，十有八九是安装不上的。在这里把“艰辛”的重装过程存个档。
+Step 1: 安装Ruby 2.1 OSX 我升级到Yosemite之后自带的是2.0版本的Ruby，Jekyll安装需要2.1以上才行，在Terminal里查看Ruby版本的命令是：
+ruby -v ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin14]  在安装Ruby之前需要先装好Xcode（Apple Store有下载，安装包很大），并且在Terminal中装好command line:
+xcode-select --install  我看网上都推荐两个常用工具来安装管理这些开发环境，一个是Homebrew，安装方法如下：
+ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  另一个是rvm，可以管理Ruby的版本：
+\curl -sSL https://get.rvm.io | bash -s stable  需要说明的是，如果从老系统升级到Yosemite的话，装过Homebrew和MacTex Live的电脑升级过程会非常慢。
+装完rvm可以查看下需要的安装文件，及有没有什么问题。
+rvm requirements brew doctor  不管有没有什么问题，都可以先试试直接开始装，不行再回头Google
+rvm install 2.1.2  如果要换回2.0.0，只需要输入
+rvm use 2.0.0 --default  Step 2: 安装Jekyll 这步非常简单
+gem install jekyll  Step 3: 配置Github 基本思路是要把Github上之前的东西同步回来，涉及到设ssh密钥等一系列过程，官网给出了不错的讲解。</description>
+    </item>
+    
+    <item>
+      <title>Embedding D3 in Jekyll | 将d3.js代码嵌入Jekyll博客</title>
+      <link>/2014/11/embedding-d3-in-jekyll--%E5%B0%86d3.js%E4%BB%A3%E7%A0%81%E5%B5%8C%E5%85%A5jekyll%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Thu, 06 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/2014/11/embedding-d3-in-jekyll--%E5%B0%86d3.js%E4%BB%A3%E7%A0%81%E5%B5%8C%E5%85%A5jekyll%E5%8D%9A%E5%AE%A2/</guid>
+      <description>之前不知道Jekyll里还能嵌入d3.js制作的动态可视化图表，今天Google了一下，发现有人做出了回答：Stack Overflow question，同时又找到了一篇博客介绍怎么写相应的Markdown引用文档的说明。最为关键的是在Markdown文件中添加如下字段（可替换成想引用的图表）：
+&amp;lt;iframe src=&amp;quot;http://bl.ocks.org/mbostock/raw/4061502/&amp;quot; width=&amp;quot;650&amp;quot; height=&amp;quot;450&amp;quot; frameborder=”0” marginwidth=&amp;quot;0&amp;quot; marginheight=&amp;quot;0&amp;quot; scrolling=&amp;quot;no&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;   现在一个小问题是，如果是我自己用D3画的图，怎么直接放上来而不是通过引用的方式，且待我好好琢磨琢磨。
+11月8日更新 今天终于把怎么在Jekyll里插入D3的动态可视化图整了个七七八八，核心是要在图的前后代码处插入&amp;lt;AAA&amp;gt; &amp;lt;\AAA&amp;gt; ，这里字母随意，然后把D3中select“body”之类的命令中的&amp;rdquo;body&amp;rdquo;全换成对应的&amp;rdquo;AAA&amp;rdquo;。
+让我们看个例子：（鼠标拖拽能动噢，画法请右击查看源代码）
+  //Width and height var w = 600; var h = 300;
+//Original data var dataset = { nodes: [ { name: &amp;ldquo;Adam&amp;rdquo; }, { name: &amp;ldquo;Bob&amp;rdquo; }, { name: &amp;ldquo;Carrie&amp;rdquo; }, { name: &amp;ldquo;Donovan&amp;rdquo; }, { name: &amp;ldquo;Edward&amp;rdquo; }, { name: &amp;ldquo;Felicity&amp;rdquo; }, { name: &amp;ldquo;George&amp;rdquo; }, { name: &amp;ldquo;Hannah&amp;rdquo; }, { name: &amp;ldquo;Iris&amp;rdquo; }, { name: &amp;ldquo;Jerry&amp;rdquo; } ], edges: [ { source: 0, target: 1 }, { source: 0, target: 2 }, { source: 0, target: 3 }, { source: 0, target: 4 }, { source: 1, target: 5 }, { source: 2, target: 5 }, { source: 2, target: 5 }, { source: 3, target: 4 }, { source: 5, target: 8 }, { source: 5, target: 9 }, { source: 6, target: 7 }, { source: 7, target: 8 }, { source: 8, target: 9 } ] };</description>
+    </item>
+    
+  </channel>
+</rss>

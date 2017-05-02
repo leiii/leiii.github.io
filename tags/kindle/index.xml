@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kindle on Lei Dong | 董磊</title>
+    <link>/tags/kindle/</link>
+    <description>Recent content in Kindle on Lei Dong | 董磊</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Dec 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/kindle/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Kindle Clippings to Separate Books | 将Kindle笔记按书名整理</title>
+      <link>/2013/12/kindle-clippings-to-separate-books--%E5%B0%86kindle%E7%AC%94%E8%AE%B0%E6%8C%89%E4%B9%A6%E5%90%8D%E6%95%B4%E7%90%86/</link>
+      <pubDate>Tue, 17 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/2013/12/kindle-clippings-to-separate-books--%E5%B0%86kindle%E7%AC%94%E8%AE%B0%E6%8C%89%E4%B9%A6%E5%90%8D%E6%95%B4%E7%90%86/</guid>
+      <description>这篇属于插播，写完这个老老实实完成后面几篇数据可视化的笔记。不用Kindle的可以忽略本文。
+背景及要解决的问题： Kindle会把阅读中划出来的句子或做的笔记全放到一个叫My Clippings.txt的文件夹，按句子被标记的时间排序，并没有按不同的书分类。如果同时在读好几本书，那么不同笔记之间很有可能交错存在My Clippings中，给后期整理带来了不便。当然我们可以一条一条手工Ctrl C + Ctrl V，但有没有办法可以一劳永逸呢？答案是肯定的！
+我们先了解一下My Clippings.txt中的结构：
+ 书名A 标记时间 空行 标记内容 ========== 书名B 标记时间 空行 标记内容 ========== 书名A 标记时间 空行 标记内容 ==========  结构比较简单，对应思路也不复杂：找到所有不重复的书名，然后遍历所有行，把这个书名对应下的标记时间 + 空行 + 标记内容放到新文件中去。在这个过程中我学到了两个很重要的Python的库及函数：os标准库和with as函数。
+os标准库可以使程序在不同平台上都可以有效运行，with as函数也可以方便处理读写文件。关于os标准库可看这里，而with as的用法，这篇文章总结的很好。
+代码： 代码出处在第二行注释中给出，我针对mac做了点小修改，同时结合我的使用笔记习惯进行了调整，并加入了大量注释以利于学习：
+# -*- coding: utf-8 -*- #https://github.com/mescoda/kindleSpliter/blob/master/kindleSpliter.py import os #os标准库 output_folder = os.path.join(&#39;output&#39;) if not os.path.exists(output_folder): os.mkdir(output_folder) #创建名为output的文件夹存放导出文件 title_filename = os.path.join(output_folder,&#39; TitleAll.txt&#39;) with open(&#39;My Clippings.txt&#39;,&#39;r&#39;) as clipping_file: #with通常用在读取文件操作中，将文件的关闭操作放在exit方法中，这样就不会因忘记释放文件而产生可能出现的错误。 line = clipping_file.readlines() #readlines是按行读取，line是一个以每行为元素的list titleline = set() #用set可以遍历所有标题后选出所有不重复的标题 for i in range(len(line)): if line[i] == &#39;==========\r\n&#39;: #如果line[i]是分割线那一行，window中是\n，mac中是\r\n titleline.</description>
+    </item>
+    
+    <item>
+      <title>Kindle, the Terminator of Paper Books? | Kindle, 纸制书的终结者？</title>
+      <link>/2013/10/kindle-the-terminator-of-paper-books--kindle-%E7%BA%B8%E5%88%B6%E4%B9%A6%E7%9A%84%E7%BB%88%E7%BB%93%E8%80%85/</link>
+      <pubDate>Wed, 09 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/2013/10/kindle-the-terminator-of-paper-books--kindle-%E7%BA%B8%E5%88%B6%E4%B9%A6%E7%9A%84%E7%BB%88%E7%BB%93%E8%80%85/</guid>
+      <description>关键词： 电子书 纸制书 Kindle 豆瓣阅读 iPad 阅读革命 信息量/页
+自己是个浅度买书爱好者，杂七杂八的书买了也有两三千本，但享受阅读的同时也对纸制书又爱又恨，特别是几次倒腾宿舍、办公室，纸制书成了巨大的负担。印刷术发明后，纸制书作为信息的载体，极大促进了知识的传播，但也有先天不足，比如：1）重，不易运输，搬家、旅行时深有体会。2）占空间。3）不易检索。4）更新慢等等。我有时会感慨，科技革新恨不得以天以月记的今天，纸书这种载体发展了几百年几乎没有革命性变化，实在不符合时代的规律。要说没有变化也不对，纸书确实没太多变化，但就阅读来讲，媒介越来越多。除了纸书，人们已经大量开始用手机，平板，电子书阅读器，电脑，甚至MP3来“读书”。信息获取多元化、电子化的今天，纸制书是否还有出路？答案并不简单。
+约半年前自己开始试水电子书阅读，前后尝试了iPad上的iBook, 豆瓣阅读，iPadmini，Kindle PaperWhite，对于主流的电子书平台有了一些体验后我发现，纸制书并没有像很多人鼓吹的一样将马上死去，电子书的形态未来也肯定不是现在的样子。我并不是一个抱残守缺的人，对纸质书的爱好也绝不是所谓的“喜欢那种触感”与“书香”，即便从特别实用的角度看纸制书也有很大的优点。究其原因可能有2点：随意性（不确定性）和信息量/页。
+ 随意性、不确定性。首先，纸制书允许你随便翻阅，这种翻阅对阅读很重要，可以从章节、段落中选取感兴趣的点来读。这种不确定定性是电子书无法带来的。其次，纸制书可以随便画写，边角有大量留白可以批注。目前所有的电子书在批注这一点上都无法跟纸版书比较，特别是随意勾画符号、公式等电子书都比较难做到。 信息量/页。纸版书对开的排版带给阅读的信息量更大(信息量/页），大脑在选择信息的时候余地更大，择要点而读，可详可略。而且纸版书格式、字体、图表、段落等信息更加丰富，有助于阅读和理解。个人通过综合对比来看，纸制书的阅读速度更快。（仅为个人经验，真正的研究不确定）。  这两点都关乎阅读体验，电子书能否全面超越纸质书，这两点很关键。现在的电子书形态几乎很难在这两点上找到突破，先拿第一点说，电子化带来的是确定性，你一翻开电子书一定是上次你读到的位置，即便“翻一翻”，也要指定一个章节或者页码，这一先天的属性很难改变。第二点受制于电子书屏幕尺寸的限制，只有iPad能呈现最接近纸书的信息量/页，但iPad对于阅读来讲续航时间太短。所以大多数电子书平台纯文字类的，像小说、散文等阅读体验较好，图表信息较多的理工类书阅读体验较差。
+我在试过了多种平台的电子书后简单比较如下：
+公共的优点：  便携，易于携带。 存储量大，随便一个终端就可存几千本书，超过一个人一生的阅读量。 信息易于检索。 电子版书籍比纸版便宜。  公共的缺点：  资源有限，但这一点缺点会逐渐消失。 传达信息不全面，图表、公式、字体、样式普遍还有问题，而这些信息对于阅读非常重要，特别是对于科技类书籍的阅读。 不同平台的电子书又各有自己的特点：  KINDLE 缺点：
+ 不跟手，翻页有明显的延迟。 中文支持有限。 黑白屏幕会丢失部分书彩色图表带来了信息  优点：
+ 背靠亚马逊，资源最多。 续航时间最长。 E-INK技术带来了视觉体验最接近纸制书。  豆瓣阅读 缺点：
+ 书目太少。 目前图片、表格分辨率低，质量差。  优点：
+ 支持终端最多，不同终端间可同步阅读进度。  IPAD： 缺点:
+ 对阅读来讲续航时间短。 价格较贵。 娱乐功能会分散读书注意力。
+  优点：
+ 信息/页 最高，对格式支持最多，iBook对视频、图片支持较好。  阅读是个不断训练的过程，从小我们接触的是纸制书的信息密度，换成电子书后需要有一个再学习的过程。而且现在的电子书还有很多不足，做为纸版书的补充是个不错的选择。
+我设想的电子书的终极形态可能就是一本书，想看什么的时候里面的内容就变成什么：）</description>
+    </item>
+    
+  </channel>
+</rss>

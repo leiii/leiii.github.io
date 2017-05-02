@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Lei Dong | 董磊</title>
+    <link>/tags/python/</link>
+    <description>Recent content in Python on Lei Dong | 董磊</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 14 Feb 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python rtree install | Python中Rtree配置问题</title>
+      <link>/2015/02/python-rtree-install--python%E4%B8%ADrtree%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sat, 14 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/2015/02/python-rtree-install--python%E4%B8%ADrtree%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/</guid>
+      <description>最近老是遇到配置Python环境的问题，特别是遇到一些小众一点的包，并没有包括在一些IDE里，所以得各种自己搞。这里写几个常用的方法，主要当做备忘录。
+在做空间计算的时候，即便用了numpy，scipy，虽然对于矩阵运算有了很大的提高。但是并没有对类型地理空间数据进行优化，一般要用一个Rtree的算法来减小索引次数，这个算法在Python中有个对应的包。但Rtree需要先装一个叫libspatialindex的包，具体可以去这里下载安装，有种更简单的办法是用brew来装。只用一行命令：
+brew install spatialindex  然后去这儿把Rtree下载下来，找到相应目录后安装一下：
+python setup.py install  用Brew和Pip这两个工具安装管理个种包还是比较方便的，自己的感觉是安一个IDE，相当于把主流的包都装上，然后再用Brew和Pip安一些自己可能用到但又没有那么常用的包。不过装IDE之后有的会修改默认的Python路径，改成自己的，但卸载后并不会删除这个路径，会导致Python出错，如果有类似的情况，把出错信息Google一下一般会有答案。一般是把~/.bash_profile中的IDE注释掉就行了。
+找到一个链接，对于怎么配置说得比较明白：http://matrix.windhunter.net/blog/2012/01/setup-python-env-on-lion-471.html</description>
+    </item>
+    
+    <item>
+      <title>Visualize This 8 | 数据可视化笔记 8</title>
+      <link>/2014/10/visualize-this-8--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-8/</link>
+      <pubDate>Thu, 09 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/2014/10/visualize-this-8--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-8/</guid>
+      <description>最近又尝试了几种新的可视化方法。一个是试了下Python中的pandas这个包，可以增强Python处理数据的能力，用起来跟R一样方便，顺便试了试Bettencourt在PLOS ONE文章中写的一种处理平均数的办法。简单的说，因为像GDP等变量随人口的变化不是线性的，而是异速增长，有个幂率系数，那么用人均GDP衡量城市可能会出现一个问题就是：大的城市人口多，天生人均GDP也高，如何消除这个影响呢？他们用GDP除以人口的一个幂次，这个幂次是由人口和GDP取双对数回归得出出的系数。用公式来表示就是，因为：
+$$GDP = A * Population^\beta$$
+那么，我在算人均GDP的时候，为了消除这个规模效应的影响就可以这样算：
+$$\epsilon = \log \frac{GDP}{A * Population^\beta}$$
+这样可以比不同指标之间消除城市规模效应后的影响。我也简单用Python画了一个中国的情况：
+横轴是GDP，纵轴是工资，理论上GDP相对不那么高，工资比较高的城市应该是生活比较幸福的，因为相对购买力比较强，而那些GDP很高但工资很低的城市就比较悲惨。（数据说明：统计范围是二百多个中国城市市辖区，人口数据来自六普，GDP和工资数据来自2011年城市统计年鉴。）
+代码如下：
+# coding: utf-8 import pandas import numpy as np import matplotlib.pyplot as plt data = pandas.read_table(r&amp;quot;test01.csv&amp;quot;,sep=&amp;quot;;&amp;quot;) r = np.sqrt(data[&amp;quot;StdResiGDP&amp;quot;]**2 + data[&amp;quot;StdResiWage&amp;quot;]**2) theta = np.arctan2(data[&amp;quot;StdResiWage&amp;quot;],data[&amp;quot;StdResiGDP&amp;quot;]) area = 40 * r**2 colors = r ax = plt.subplot(111, polar=True) c = plt.scatter(theta, r, c=colors, s=area, cmap=plt.cm.rainbow) c.set_alpha(0.75) plt.show()  另外，最近做文献综述，用illustrator把复杂科学(Complex Science)的研究脉络梳理了下，从上到下大致是：数学、几何领域；生物领域；自组织、网络科学领域，控制论、与社会经济领域；计算机仿真领域。主要基于前人的工作重新绘制了一遍，添加了关于城市研究的一些组织和个人。
+我还从头梳理了一下城市实证研究方面自1900年以来重要的思想和模型，到时候一并放上来。</description>
+    </item>
+    
+    <item>
+      <title>Raw Data from Figures | 从图片中提取数据</title>
+      <link>/2014/09/raw-data-from-figures--%E4%BB%8E%E5%9B%BE%E7%89%87%E4%B8%AD%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE/</link>
+      <pubDate>Fri, 05 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/2014/09/raw-data-from-figures--%E4%BB%8E%E5%9B%BE%E7%89%87%E4%B8%AD%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE/</guid>
+      <description>有时候我们经常会在文献中看到许多图表，特别是一些表示两个变量关系的散点图，但作者往往不一定提供原始数据，我们当然可以想办法联系作者获取原始数据，但有时候这样不但成功率不高，而且像一些早年的文献，可能作者无法联系，甚至原始数据已经无法获得了。
+那么有什么办法么？今天看到Wu Lingfei写了一个文章，讲“摄影法”求原始数据，说白了就是拍（或扫描）一张无透视的图片，稍加处理便可得到其相对准确的原始数据。我在这里改良了一下原始方法，发挥建院同学的优势，可以前期用PS辅助处理一下，以增加准确度。
+STEP 1：拍照 这是原文作者用手机拍的一张照片，虽然说手机也可以有不错的拍照效果，但难免会有透视，而且数据点清晰度低的话可能会影响后一步处理，如果可能的话建立试试扫描仪。
+STEP 2：预处理 将图片在PS里先剪裁一下，大小需要正好剪裁到坐标轴边框；接着调整成阈值模式，再进一步其实可以单独用画笔点一下数据点，因为“粘连”在一起的数据点到后面计算机是没法分开的。
+下面的工作就交给计算机啦。
+STEP 3：用Python的包识别出点的组团 # -*- coding: utf-8 -*- import numpy as np #数组 import matplotlib.pyplot as plt #画图 from scipy import ndimage #核心！图片处理 from scipy.ndimage import measurements j = ndimage.imread(&amp;quot;/Users/mac/Desktop/figure1.jpg&amp;quot;) #j是一个y行，x列的array b = ndimage.gaussian_filter(j,4) #用高斯法处理图片，得到点的cluster c,d = ndimage.label(b&amp;lt;50) #给cluster打上标签，后面b的值是个阈值，可调节 im = plt.imshow(c) plt.show()  STEP 4：画出所有Cluster，并存下中心点的数据 # -*- coding: utf-8 -*- import numpy as np #数组 import matplotlib.pyplot as plt #画图 from scipy import ndimage #核心！图片处理 from scipy.</description>
+    </item>
+    
+    <item>
+      <title>Doves | 梁朝伟喂鸽子</title>
+      <link>/2014/08/doves--%E6%A2%81%E6%9C%9D%E4%BC%9F%E5%96%82%E9%B8%BD%E5%AD%90/</link>
+      <pubDate>Wed, 13 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/2014/08/doves--%E6%A2%81%E6%9C%9D%E4%BC%9F%E5%96%82%E9%B8%BD%E5%AD%90/</guid>
+      <description>最近有个好玩儿的事情，起因是这样的。网上有许多“恶搞”物理题目表述，比如这个：
+在一个烟雨蒙蒙的清晨，你站在窗前，感慨万千,曾经失落过，但一切的曾经代替不了现在的行走，活在当下，曾经终究不是未来，水一滴一滴从屋檐自由落下，你的思绪也随它荡漾开来，突然发现当它通过屋檐下高为1.4m的窗户时，用时0.2s，空气阻力不计，取g=10m/s2。求此窗户离屋檐的距离。
+我给Z同学出了几个后，被其反问了一个很有趣的问题：
+梁朝伟在伦敦喂鸽子，每头喂一个面包屑就会有两只鸽子争抢，抢到的概率均等。假设广场上有100只鸽子，每只鸽子吃一片面包屑需要一秒钟，累计吃十片面包屑就吃饱飞走了，没吃到的会一直抢，直到吃饱为止，但如果累计10次没抢到就累觉不爱飞走了。问梁朝伟需要至少准备多少面包屑，才能保证观看鸽子吃食的时间最长。
+理想情况下，100只鸽子各吃到9片，抢但没吃到9次，这时梁朝伟投喂了900片，接下来，每头喂一次就会有一直吃饱飞走，一只累计10次没吃到飞走，也就是在投喂50次就够了，共计950片。不过实际情况肯定要比这个少。
+不知道大家想没想到如何求解析解，我目前还没解出来，不过拿Python写了个小脚本求了下数值解，大概830-850多片就够了。
+ #!/usr/bin/env python &amp;quot;&amp;quot;&amp;quot; Simulation of the dove model &amp;quot;&amp;quot;&amp;quot; # -*- coding: utf-8 -*- import random doves = {} alpha = 10 for i in range(100): doves[i] = [0,0] #每个鸽子有一个list，第一个存吃的次数，每二个存没抢到的次数 t = 1 while t &amp;lt; 10000 and len(doves) &amp;gt;= 2: a = random.sample(doves,2) #从dove中选两只出来 doves[a[0]][0] += 1 #第一只得到吃的 doves[a[1]][1] += 1 #第二只没得到吃的 t += 1 #如果一只鸽子累计得到10次或者没得到10次，就从总的中删除 if doves[a[0]][0] &amp;gt;= alpha: del doves[a[0]] if doves[a[1]][1] &amp;gt;= alpha: del doves[a[1]] print &amp;quot;The total time is:&amp;quot;, t print &amp;quot;The last dove is:&amp;quot;, doves  </description>
+    </item>
+    
+    <item>
+      <title>Getting Cleaning and Visualizing Data 1 | 数据获取分析与表达 1</title>
+      <link>/2014/06/getting-cleaning-and-visualizing-data-1--%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E8%BE%BE-1/</link>
+      <pubDate>Wed, 04 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/2014/06/getting-cleaning-and-visualizing-data-1--%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E8%BE%BE-1/</guid>
+      <description>昨天（6月3号）晚上，果说@Fruitalk小团体举行了一次线下沙龙。交流了关于数据获取、分析与表达的相关问题。
+目前暂定会有四次，大概每次交流的提纲如下：
+ 总述、软件，简单的流程(例子);  有了数据，如何画图(统计回归,地图);  如何获取、处理数据;  关于定性与定量研究。  昨天是讨论的第一次，讨论提纲如下：
+ 1.1 目标 (Why) 1.2 软件 (Who)  1.3 过程 (How)  1.4 例子 (How+)  1.5 Tips  1.6 进一步学习的资料   完成后我们会把所有PPT上传，第一次的PPT可以点击这里下载。
+欢迎感兴趣的朋友们一起交流、讨论。</description>
+    </item>
+    
+    <item>
+      <title>Kindle Clippings to Separate Books | 将Kindle笔记按书名整理</title>
+      <link>/2013/12/kindle-clippings-to-separate-books--%E5%B0%86kindle%E7%AC%94%E8%AE%B0%E6%8C%89%E4%B9%A6%E5%90%8D%E6%95%B4%E7%90%86/</link>
+      <pubDate>Tue, 17 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/2013/12/kindle-clippings-to-separate-books--%E5%B0%86kindle%E7%AC%94%E8%AE%B0%E6%8C%89%E4%B9%A6%E5%90%8D%E6%95%B4%E7%90%86/</guid>
+      <description>这篇属于插播，写完这个老老实实完成后面几篇数据可视化的笔记。不用Kindle的可以忽略本文。
+背景及要解决的问题： Kindle会把阅读中划出来的句子或做的笔记全放到一个叫My Clippings.txt的文件夹，按句子被标记的时间排序，并没有按不同的书分类。如果同时在读好几本书，那么不同笔记之间很有可能交错存在My Clippings中，给后期整理带来了不便。当然我们可以一条一条手工Ctrl C + Ctrl V，但有没有办法可以一劳永逸呢？答案是肯定的！
+我们先了解一下My Clippings.txt中的结构：
+ 书名A 标记时间 空行 标记内容 ========== 书名B 标记时间 空行 标记内容 ========== 书名A 标记时间 空行 标记内容 ==========  结构比较简单，对应思路也不复杂：找到所有不重复的书名，然后遍历所有行，把这个书名对应下的标记时间 + 空行 + 标记内容放到新文件中去。在这个过程中我学到了两个很重要的Python的库及函数：os标准库和with as函数。
+os标准库可以使程序在不同平台上都可以有效运行，with as函数也可以方便处理读写文件。关于os标准库可看这里，而with as的用法，这篇文章总结的很好。
+代码： 代码出处在第二行注释中给出，我针对mac做了点小修改，同时结合我的使用笔记习惯进行了调整，并加入了大量注释以利于学习：
+# -*- coding: utf-8 -*- #https://github.com/mescoda/kindleSpliter/blob/master/kindleSpliter.py import os #os标准库 output_folder = os.path.join(&#39;output&#39;) if not os.path.exists(output_folder): os.mkdir(output_folder) #创建名为output的文件夹存放导出文件 title_filename = os.path.join(output_folder,&#39; TitleAll.txt&#39;) with open(&#39;My Clippings.txt&#39;,&#39;r&#39;) as clipping_file: #with通常用在读取文件操作中，将文件的关闭操作放在exit方法中，这样就不会因忘记释放文件而产生可能出现的错误。 line = clipping_file.readlines() #readlines是按行读取，line是一个以每行为元素的list titleline = set() #用set可以遍历所有标题后选出所有不重复的标题 for i in range(len(line)): if line[i] == &#39;==========\r\n&#39;: #如果line[i]是分割线那一行，window中是\n，mac中是\r\n titleline.</description>
+    </item>
+    
+    <item>
+      <title>Visualize This 2 | 数据可视化笔记 2</title>
+      <link>/2013/12/visualize-this-2--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-2/</link>
+      <pubDate>Fri, 13 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/2013/12/visualize-this-2--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-2/</guid>
+      <description>上篇文章提到了一些有趣的图形，再之前一篇文章讲了用R导入地图的问题。如果把数据和地图结合可以展现更多有意思的结论。这里我们就说说与地图有关的数据可视化，所有素材都来自上文提到的Visualize This一书，但书出版后有些软件版本进行了更新，用原书中的代码会报错，所以我修订了新的代码。
+准备工作： 1、软件安装。本文涉及Python及其插件BeautifulSoup（版本为4）；R及其插件maps(在R中装插件很容易，只需要输入install.packages(maps)就行)。
+2、数据。美国一家商店在美国开店的数据，世界范围内国家生育率的数据，美国失业率的数据。后文会给出链接。
+3、底图。一张美国的SVG底图，可以在这里下到。
+第一张图： 这是一家连锁店全美开店位置图。可以看到它主要集中在东西海岸，数据在这里下载。
+library(maps) #载入maps costcos &amp;lt;- read.csv(&amp;quot;http://book.flowingdata.com/ch08/geocode/costcos-geocoded.csv&amp;quot;, sep = &amp;quot;,&amp;quot;) #载入数据 map(database = &amp;quot;state&amp;quot;, col = &amp;quot;#cccccc&amp;quot;) #载入美国地图，底图设为灰色 symbols(costcos$Longitude, costcos$Latitude, bg = &amp;quot;#e2373f&amp;quot;, fg = &amp;quot;#ffffff&amp;quot;, lwd = 0.5, circles = rep(1, length(costcos$Longitude)), inches = 0.05, add = TRUE) #add=TRUE表示在上张图上叠加symbols；前两个变量代表横纵坐标；bg是填充颜色，fg是框线颜色；lwd是线的粗度；circles是圆，后面的括号代表一个数组，长度为地图上点的数量；inches表示圆的大小  第二张： 第二张图是《2008年联合国人类发展报告》中未成年人生育率（每1000名15-19岁女性中生育数量）。数据可以在这里下载。
+library(maps) #载入maps fertility &amp;lt;- read.csv(&amp;quot;http://book.flowingdata.com/ch08/points/adol-fertility.csv&amp;quot;) map(&#39;world&#39;, fill = FALSE, col = &amp;quot;#cccccc&amp;quot;) #选择世界地图，不填充，底图为灰色 symbols(fertility$longitude, fertility$latitude, circles = sqrt(fertility$ad_fert_rate), add = TRUE, inches = 0.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data on Lei Dong | 董磊</title>
+    <link>/tags/data/</link>
+    <description>Recent content in Data on Lei Dong | 董磊</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 Mar 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/data/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data for Development | 手机数据与城市发展</title>
+      <link>/2015/03/data-for-development--%E6%89%8B%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%B8%8E%E5%9F%8E%E5%B8%82%E5%8F%91%E5%B1%95/</link>
+      <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/2015/03/data-for-development--%E6%89%8B%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%B8%8E%E5%9F%8E%E5%B8%82%E5%8F%91%E5%B1%95/</guid>
+      <description>睿琪、张江老师和我参加了一次Orange公司组织的数据竞赛（D4D Challenge），竞赛内容也是NetMob15会议的一部分（今年的会议由MIT Media Lab主办，时间是3月底4月初）。我们利用Orange提供的Senegal的手机数据，结合OpenStreetMap的路网数据，对城市的动态人口分布，职住情况，交通效率等进行了分析。通过数据识别出了城市中基础设施（路网）与人口分布不匹配的区域，同时也构建了一个城市交通效率的指标，这些都可以为以后的城市规划决策提供更加科学、定量的依据。
+更多的内容会在会议结果公布后更新。http://www.d4d.orange.com/en/home
+How efficient a city is, how to make the city more efficient, might be an important question to its administrators and all of its residents. The most obvious efficiency will be the commuting efficiency, which will affect the experience of working people and energy saving of the city.
+However, in Africa, high quality data is quite limited. But the digital &amp;lsquo;footprints&amp;rsquo; such as call detailed records give us a clue.</description>
+    </item>
+    
+    <item>
+      <title>Visualize This 8 | 数据可视化笔记 8</title>
+      <link>/2014/10/visualize-this-8--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-8/</link>
+      <pubDate>Thu, 09 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/2014/10/visualize-this-8--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-8/</guid>
+      <description>最近又尝试了几种新的可视化方法。一个是试了下Python中的pandas这个包，可以增强Python处理数据的能力，用起来跟R一样方便，顺便试了试Bettencourt在PLOS ONE文章中写的一种处理平均数的办法。简单的说，因为像GDP等变量随人口的变化不是线性的，而是异速增长，有个幂率系数，那么用人均GDP衡量城市可能会出现一个问题就是：大的城市人口多，天生人均GDP也高，如何消除这个影响呢？他们用GDP除以人口的一个幂次，这个幂次是由人口和GDP取双对数回归得出出的系数。用公式来表示就是，因为：
+$$GDP = A * Population^\beta$$
+那么，我在算人均GDP的时候，为了消除这个规模效应的影响就可以这样算：
+$$\epsilon = \log \frac{GDP}{A * Population^\beta}$$
+这样可以比不同指标之间消除城市规模效应后的影响。我也简单用Python画了一个中国的情况：
+横轴是GDP，纵轴是工资，理论上GDP相对不那么高，工资比较高的城市应该是生活比较幸福的，因为相对购买力比较强，而那些GDP很高但工资很低的城市就比较悲惨。（数据说明：统计范围是二百多个中国城市市辖区，人口数据来自六普，GDP和工资数据来自2011年城市统计年鉴。）
+代码如下：
+# coding: utf-8 import pandas import numpy as np import matplotlib.pyplot as plt data = pandas.read_table(r&amp;quot;test01.csv&amp;quot;,sep=&amp;quot;;&amp;quot;) r = np.sqrt(data[&amp;quot;StdResiGDP&amp;quot;]**2 + data[&amp;quot;StdResiWage&amp;quot;]**2) theta = np.arctan2(data[&amp;quot;StdResiWage&amp;quot;],data[&amp;quot;StdResiGDP&amp;quot;]) area = 40 * r**2 colors = r ax = plt.subplot(111, polar=True) c = plt.scatter(theta, r, c=colors, s=area, cmap=plt.cm.rainbow) c.set_alpha(0.75) plt.show()  另外，最近做文献综述，用illustrator把复杂科学(Complex Science)的研究脉络梳理了下，从上到下大致是：数学、几何领域；生物领域；自组织、网络科学领域，控制论、与社会经济领域；计算机仿真领域。主要基于前人的工作重新绘制了一遍，添加了关于城市研究的一些组织和个人。
+我还从头梳理了一下城市实证研究方面自1900年以来重要的思想和模型，到时候一并放上来。</description>
+    </item>
+    
+    <item>
+      <title>Raw Data from Figures | 从图片中提取数据</title>
+      <link>/2014/09/raw-data-from-figures--%E4%BB%8E%E5%9B%BE%E7%89%87%E4%B8%AD%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE/</link>
+      <pubDate>Fri, 05 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/2014/09/raw-data-from-figures--%E4%BB%8E%E5%9B%BE%E7%89%87%E4%B8%AD%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE/</guid>
+      <description>有时候我们经常会在文献中看到许多图表，特别是一些表示两个变量关系的散点图，但作者往往不一定提供原始数据，我们当然可以想办法联系作者获取原始数据，但有时候这样不但成功率不高，而且像一些早年的文献，可能作者无法联系，甚至原始数据已经无法获得了。
+那么有什么办法么？今天看到Wu Lingfei写了一个文章，讲“摄影法”求原始数据，说白了就是拍（或扫描）一张无透视的图片，稍加处理便可得到其相对准确的原始数据。我在这里改良了一下原始方法，发挥建院同学的优势，可以前期用PS辅助处理一下，以增加准确度。
+STEP 1：拍照 这是原文作者用手机拍的一张照片，虽然说手机也可以有不错的拍照效果，但难免会有透视，而且数据点清晰度低的话可能会影响后一步处理，如果可能的话建立试试扫描仪。
+STEP 2：预处理 将图片在PS里先剪裁一下，大小需要正好剪裁到坐标轴边框；接着调整成阈值模式，再进一步其实可以单独用画笔点一下数据点，因为“粘连”在一起的数据点到后面计算机是没法分开的。
+下面的工作就交给计算机啦。
+STEP 3：用Python的包识别出点的组团 # -*- coding: utf-8 -*- import numpy as np #数组 import matplotlib.pyplot as plt #画图 from scipy import ndimage #核心！图片处理 from scipy.ndimage import measurements j = ndimage.imread(&amp;quot;/Users/mac/Desktop/figure1.jpg&amp;quot;) #j是一个y行，x列的array b = ndimage.gaussian_filter(j,4) #用高斯法处理图片，得到点的cluster c,d = ndimage.label(b&amp;lt;50) #给cluster打上标签，后面b的值是个阈值，可调节 im = plt.imshow(c) plt.show()  STEP 4：画出所有Cluster，并存下中心点的数据 # -*- coding: utf-8 -*- import numpy as np #数组 import matplotlib.pyplot as plt #画图 from scipy import ndimage #核心！图片处理 from scipy.</description>
+    </item>
+    
+    <item>
+      <title>Getting Cleaning and Visualizing Data 1 | 数据获取分析与表达 1</title>
+      <link>/2014/06/getting-cleaning-and-visualizing-data-1--%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E8%BE%BE-1/</link>
+      <pubDate>Wed, 04 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/2014/06/getting-cleaning-and-visualizing-data-1--%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E8%BE%BE-1/</guid>
+      <description>昨天（6月3号）晚上，果说@Fruitalk小团体举行了一次线下沙龙。交流了关于数据获取、分析与表达的相关问题。
+目前暂定会有四次，大概每次交流的提纲如下：
+ 总述、软件，简单的流程(例子);  有了数据，如何画图(统计回归,地图);  如何获取、处理数据;  关于定性与定量研究。  昨天是讨论的第一次，讨论提纲如下：
+ 1.1 目标 (Why) 1.2 软件 (Who)  1.3 过程 (How)  1.4 例子 (How+)  1.5 Tips  1.6 进一步学习的资料   完成后我们会把所有PPT上传，第一次的PPT可以点击这里下载。
+欢迎感兴趣的朋友们一起交流、讨论。</description>
+    </item>
+    
+    <item>
+      <title>Muji Award | 从MUJI AWARD 04 看信息整理</title>
+      <link>/2014/05/muji-award--%E4%BB%8Emuji-award-04-%E7%9C%8B%E4%BF%A1%E6%81%AF%E6%95%B4%E7%90%86/</link>
+      <pubDate>Thu, 15 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/2014/05/muji-award--%E4%BB%8Emuji-award-04-%E7%9C%8B%E4%BF%A1%E6%81%AF%E6%95%B4%E7%90%86/</guid>
+      <description>“收纳书” MUJI AWARD 04以“生活中的恒久设计”（Long Lasting Design for Living）为主题，希望学习先人的智慧，观察现代的生活，从崭新的视角发现未来10年、50年、100年后仍将持续存在的设计。最后收到了4,824份参赛作品。
+4月26日，无印良品（MUJI）在上海万科中心举行了颁奖典礼。金奖的设计有两个，分别是：叶智泉的“收纳书”和小高浩平（日本）的“小石子粉笔”。从后续的报道来看，当时评委对这两个作品争执不休，最后决定并列金奖。（好中国的处理办法：）在我看来，“收纳书”的设计智慧绝对不是收纳小物品那么简单，它与信息分类整理有着诸多关联。
+在说信息整理前，让我们先来看看这个金奖设计：
+收纳书 作者名：叶智泉 (现居香港)
+ 将物件归类的习惯，已经成为了生活的一部份，但我们有时会碰到无法决定物件收纳位置的情况。如果将收纳盒作成书的形状，就可以简单的决定收纳盒的放置位置了。结合无印良品的收纳盒和一般的书本的形状，书脊上可以写下物件的类别。「收纳书」和书本一起排列在书架上，但其和书架上的书本不同，有着收纳的功能。
+ 我们拆解一下设计过程，大概是：
+- 设计师从一个问题出发：有时会碰到无法决定物件收纳位置的情况。
+- 引发了一个关于书的联想：图书馆或者家中的书可以分类码放，期刊可以按日期，图书可以按类别。同样很重要的是大多数书开本都差不多，给收纳带来了诸多便利。
+- 可行性：无印良品原来就有收纳盒的品类，只要结合书本形状进行再设计就可以。
+- 完善：书脊上可以写下物件的类别，像书名一样利于识别。「收纳书」排列在书架上，有着收纳的功能。
+信息整理 我相信如果我当时是评委，也会被这个设计深深打动，特别是契合之前无印良品再设计（Re-design）的思路。那这究竟与信息整理有什么关系呢？
+有一种说法认为我们有时候记不住东西，并不是因为“忘了”，而是没有从记忆中建立有效的索引。换句话说它（信息）就在你大脑的仓库中，但你不知道放在哪儿了。
+“收纳书”的设计给我们提供了一个整理信息（知识）的思路：标准化，分类，打标签，存储&amp;lt;-&amp;gt;检索。
+其中标准化和分类的过程是指将不同类别的信息建立一种结构，同类型的堆到一起，比如，笑话类的归笑话，商业类的归商业，后者又可以进一步分类，是关于怎么找钱的，还是怎么找人的，还是怎么营销的。这个过程很重要，像找衣服一样，如果把衣服早分成春，夏，秋，冬的类别，以后找一个夏天穿的衣服可以只从夏天分类里“检索”。
+标准化，分类后要给信息（知识）打标签，这个标签是为了综合定位用，比如有一天读了个小明关于为什么要经常写博客的文章，提到常写可以有A，B，C等好处，就可以自动在心里打上“写作”“博客”“知识分类”“小明”“A”“B”“C”等标签，以后检索的时候通过两三个标签就可以定位到这个文章，无论是从大脑中还是通过互联网上。这和认路的过程其实很像，我们有时候定位一个地方，会看它的特征和周边有什么，比如它是个白色的顶上有个天线的高楼，南面是个购物中心，北面是个麦当劳。
+对物品的收纳和对信息的收纳何其相似！
+另一个金奖 另一个金奖设计充满了童真，并没有那么实用，但估计是触碰到了一群中年男设计师（俗称“老男人”）对儿时的回忆，算是用情感打败了他们。
+小石子粉笔 作者名：小高浩平 (现居日本)
+小石头造型的粉笔。
+小时候常用小石头涂鸦玩耍。
+希望涂鸦时的这份愉快感，以及安心感，可以一直延续下去。
+这些设计似乎看起来很“平淡”，似乎可以找到套路。但我时常想两个问题：
+一个是知道套路和能设计出好东西是什么关系？就像以前武侠中一群人总喜欢抢本秘籍或者神器，武林秘籍和练成好武功是什么关系？
+另一个是为什么有那么多好的设计在商业上并没有推广开？像是有个关于瓶盖的设计，可以解决女生难拧瓶盖的问题，为什么没有被大规模采用？
+(图片来源： http://award.muji.net/)
+欢迎大家共同探讨信息分类，管理的方法。</description>
+    </item>
+    
+    <item>
+      <title>Visualize This 7 | 数据可视化笔记 7</title>
+      <link>/2014/03/visualize-this-7--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-7/</link>
+      <pubDate>Fri, 14 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/2014/03/visualize-this-7--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-7/</guid>
+      <description>今天需要试着先解释下为什么要做数据可视化，仅仅是个人理解。最核心的要义是：可以让人们迅速理解信息。
+2003年《自然》杂志发了一篇关于脑科学的文章，讨论“记忆”的问题。抛开复杂的脑科学研究不谈（我也不懂），我们可以看看人对于三类事物的认知。左上角三个正方形框内分别代表：“words”、“nameable objects”、“unfamiliar faces”。与三个图形对应的直方图是prefrontal cortex（前额叶）和medial temporal lobe（颞中回）的活动情况，每个直方图里L代表左脑，R代表右脑。
+人的左脑有语言、逻辑中枢，因此看到单词这部分区域会被激活；人的右脑有面部识别和社会认知功能，因此看到陌生面孔右脑会被激活；而看到中间的“nameable objects”（此处为青蛙），同时激活了左右脑，可以得出一个推论：开发大脑“读图”更好。
+ “读图，一方面可以使你脑内存储的抽象知识从左边传递到右边从而建立与社会生活（社会情感和认识）和联系，另一方面可以使你脑内存储的社会图景从右边传递到左边从而建立与抽象模型的联系。”（汪丁丁，《行为经济学讲义》）
+ 所以建筑师常画的diagram是一种非常好的认知工具，也就不奇怪为什么大家都喜欢看用diagram分析问题，进而催生了许多新媒体用图解的表达方式解读新闻，传播知识。
+说完了图形的好处，我们可以看看一张我最近画的北京房价分布图。其中从紫色-红色-蓝色-绿色，分别代表价格从高到低的四分位点，横坐标是经度，纵坐标是维度。从图形中我们可以清晰看到北京的居住组团及房价分布，甚至还会发现一些偏远的地方竟然有高房价（很有可以是别墅区，比如右下角紫色点。）
+数据来源：安居客2014年2月北京二手房交易信息，约4000个数据点，经python爬取后由R整理绘制</description>
+    </item>
+    
+    <item>
+      <title>Visualize This 6 | 数据可视化笔记 6</title>
+      <link>/2014/02/visualize-this-6--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-6/</link>
+      <pubDate>Sun, 09 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/2014/02/visualize-this-6--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-6/</guid>
+      <description>年后首次开工，继续关于数据与可视化的讨论。
+前几天上网发现几家做在线数据分析的公司得到了融资。（比如，Statwing希望做一个非常简单易用，让普通用户能以可视化操作就完成统计汇总和各种相关分析、假设检验和可视化表达的平台，从而比EXCEL好看，比SPSS好用。，还有一家名叫Chartio的公司也做类似业务。）不过，我仍然认为想要从数据中看到不一样的东西，需要非常艰苦的努力加上点直觉。
+TED上有一个演讲《我们从五百万本书里学到了什么》，算是对前面论述的一个精彩注脚。演讲的主角是Jean-Baptiste Michel和Erez Lieberman Aiden，他们所在的H大+Google的研究团队从Google电子化的一千五百万本书中选择了5,195,769本书（约占所有出版物的4%）建立语料库，语料库包含了五千亿个词，他们相信，通过将语料库数据化分析，可以用来研究文化的变迁，甚至他们创造了一个新词——Culturomics，来形容他们开创的领域。他们还将研究发表在Science上，名叫Quantitative Analysis of Culture Using Millions of Digitized Books，字少图多，通俗易懂，联合作者一共有十四位来自不同领域的专家学者。
+要想从这些海量的数据中发现有价值的信息绝非易事，如果你仅仅试读一下2000年一年的英语语料库，每分钟200个词，不吃不喝不睡，你需要读八十年。把这些词首尾相连，可以来回月球十次。 研究者们的高明之处在于通过他们整理了数据，建立了一种研究方法——从出版物中探寻文化变迁，可以供后人们使用。
+研究者们研究了许多文化现象，这里只举几个例子。以下图表除特殊说明外，均整理自上文提到的那篇论文。
+图表纵轴代表使用频率，使用频率 = 这个词在该年出现的次数 / 该年语料库总词数
+图1：（A）历史流行病学：流感一词的词频变化，我们可以看到波峰大多标志着大规模流感的爆发。所以有人认为现在Google在疾病监控方面的能力强于政府，因为从各地检索词的变化很有可能预测传染病的爆发，比如一个地区的人们在一定时间内对感冒，发烧，特定药物的检索量上升的话很有可能该地区正在爆发流感。（B）美国内战的演变。美国内战从1861年打到1865年，更多关于内战的信息可看WIKI词条。（C）神“God”一词的演变，神并没有完全死掉。（D）men和women一词的演变，女权主义的兴起，与男女平等的发展。
+图2：（A）我们的遗忘速度。三条线代表三个不同的年份，1883年被遗忘的半衰期约30年；1950年被遗忘的半衰期只有10多年。我们正在加速遗忘过去。We are forgetting our past faster with each passing year.（B）Cultural adoption is quicker。新事物出现后会在更短的时间爆发。（E）1865年名人的曝光度，每组都有三个时期：出名前(median frequency &amp;lt; 10^(-9)）；名声大震，直到顶点；缓慢下降。有四个主要考查变量：（1）the age of initial rise（2）the doubling time of the initial rise（3）the age of peak celebrity（4）the half-life of the decline.（F）1800-1920年出生的25位不同职业的最有名的人世曝光度。政治家50左右开始成名，作家和演员成名较早，但作家出名的时长大于演员。（当时估计电视电影还都不发达。）想要出名千万别当数学家：）
+图3：审查制度（C）1976年天安门出了点事儿，中文出版物中该词频飙升；1989年天安门又出了点事儿，英文出版物中该词频飙升。（D）不光中国，美国有个叫Hollywood Ten电影被和谐了，相关人员的词频大大下降，导演后来出走法国。（E）纳粹时期对文学、艺术等领域的压制。（F）研究人员弄了个压制指数，较复杂，不在此展开。
+如果你对他们的研究感兴趣，Google已经开放了所有的原始语料库，并将一个比较简单的版本上线名为ngram，让我们拿奥威尔的名作《1984》试试这个ngram。
+我检索了英文语料库里的Nineteen Eighty Four和中文语料库的1984，词频如下图所示。需要说明的是，奥威尔的这本书出版于1949年，但较晚才引入中国，中文语料库里1950年飙升的词频说明了什么？
+再送上一个big brother与Big Brother的词频分析：
+有部分链接可能需要翻墙，可参见以前的帖子。</description>
+    </item>
+    
+    <item>
+      <title>Visualize This 5 | 数据可视化笔记 5</title>
+      <link>/2014/01/visualize-this-5--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-5/</link>
+      <pubDate>Tue, 14 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/2014/01/visualize-this-5--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-5/</guid>
+      <description>Network Science 今天我来试着理解一下“网络图”。上面这张图是我画的一种网络关系图，可以是某群体内相互间的朋友关系，也可以是不同公司间的合作关系。
+数据来源为: Social and Economic Networks: Models and Analysis, Matthew O. Jackson
+用到的软件为：Gephi（免费软件，支持OS X和Windows）下载：https://gephi.org/
+网络图制作起来并不容易，但有助于理解隐藏在现象背后的规律，特别是涉及到多个调查对象相互关系的规律。加上现在数据丰富程度逐渐增加，关于社交网络数据的挖掘成了社会科学领域不可忽视的一股潮流。在Matthew O. Jackson的课上，他给出了一张特别有意思的关于“关系”的图：
+这张图是三位学者调查了一个学校的同学间“关系”（原文叫High School Romance）得到的一张图表。黑点代表男性，灰点代表女性，亮点很多，大家可以自行寻找：）
+网络科学的研究除了社会网络还有非常广阔的应用领域，C.A. Hidalgo等人在Science上写了一篇文章The Product Space Conditions Development of Nations, 讲了一个关于国家产业网络的很有意思的故事，推荐感兴趣的人读读原文。 文章的图画得很精彩，我贴到下面：
+作者在摘要里写道：
+ Economies grow by upgrading the type of products they produce and export. The technology, capital, institutions and skills needed to make such new products are more easily adapted from some products than others. We study the network of relatedness between products, or ‘product space’, finding that most upscale products are located in a densely connected core while lower income products occupy a less connected periphery.</description>
+    </item>
+    
+    <item>
+      <title>Visualize This 4 | 数据可视化笔记 4</title>
+      <link>/2013/12/visualize-this-4--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-4/</link>
+      <pubDate>Mon, 30 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/2013/12/visualize-this-4--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-4/</guid>
+      <description>这次还是关于地图信息可视化。让我们试试中国的数据，操作步骤很简单。
+基础资料：0)数据，这个因人而异；1）矢量中国地图（搜索引擎很容易找到）；2）配色方案，可参考一个不错的网站ColorBrewer；3）软件工具：AI（illustrator）
+另外，强烈推荐经常看一下经济学人杂志的图表，我认为是所有出版物中做的比较好的。（比如这个关于中国省市经济情况）
+基础数据、地图、工具准备好后，就可以方便做出一个比较简单的可视化效果：
+具体的制作过程只用到了AI的最基本操作，上图制作不会超过半个小时。
+当然，我们还可以为其添加交互功能，比如鼠标放上去显示具体信息等等。关于交互的制作，我也在慢慢学习和总结。
+数据信息比较多时，我们可能需要用脚本语言来进行分析与处理，具体可见数据可视化笔记（2）中的第三张图的制作过程。
+另外再奉送一张柱状图的可视化，关于光伏能源回收周期。里面涉及：1）不同类型的光伏（c-Si, a-Si）2）三个部分（组件、Module Frame,其他部分）3）在三种辐射地区（高、中、低）4）不同安装位置（屋顶、地面）近十个变量。
+Credit: TU DelftX (Solar Energy)</description>
+    </item>
+    
+    <item>
+      <title>Visualize This 3 | 数据可视化笔记 3</title>
+      <link>/2013/12/visualize-this-3--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-3/</link>
+      <pubDate>Sat, 21 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/2013/12/visualize-this-3--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-3/</guid>
+      <description> 一、饼图+ 这次让我们试PPT中经常出现的饼图。
+饼图一般用来展示各部分在总体中所占的百分比，适用于数据不多的情况。虽然饼图大家用的非常多，但通常是从EXCEL中直接生成，用好的并不常见，因为大家容易忽视几个问题：
+ 饼图的中心点区域线和颜色过于集中，不利于视觉舒适。
+ EXCEL默认的饼图配色大家见的太多后容易审美疲劳。我们可以用一种饼图的变体来解决一下上面的问题，“面包圈”图闪亮登场。
+  资料来源：TU DelftX
+我们可以看到，面包圈图比饼图可以放相对更多的数据而不会在中心产生过度集中现象，没有了中心集中，也有利于颜色的搭配。这种图制作也非常简单，在原来的饼图中间画个白色的圆形就行了：）
+二、HeatMap 有时候数据指标比较多的情况下，很难用简单的图表来表达，这时候可以试试HeatMap，可以在二维平面上展示矩阵形式的数据。在这个例子里我们还是用到了NBA数据，简单说就是展示了不同球员的各项指标，于之前文章中提到的“脸图”不同，这种展示方式数据更加直观。在本例中洋红到浅蓝表示数据值由高到低。
+bball &amp;lt;- read.csv(&amp;quot;http://datasets.flowingdata.com/ppg2008.csv&amp;quot;, header = TRUE) bball &amp;lt;- bball[order(bball$PTS, decreasing = FALSE),] #按得分PTS 降序排列数据 row.names(bball) &amp;lt;- bball$Name ball &amp;lt;- bball[, 2:20] bball_matrix &amp;lt;- data.matrix(bball) #数据必须转成矩阵型 bball_heatmap &amp;lt;- heatmap(bball_matrix, Rowv=NA, Colv = NA, col = cm.colors(256), scale=&amp;quot;column&amp;quot;, margins = c(5,10)) #cm.colors(256)表示从洋红到蓝（cm是cmyk里的两个词）  注：代码及数据来源一书
+断断续续写到第三篇笔记了，想列了提纲，看看以后可以写点啥，也欢迎大家多多补充。
+ 0、用到的软件的最基本介绍 1、动态数据表达（1，2） 2、数据收集方式 3、数据整理方式及工具（1，2） 4、与地理信息相关的图形表达（1，2，3）  </description>
+    </item>
+    
+    <item>
+      <title>Visualize This 2 | 数据可视化笔记 2</title>
+      <link>/2013/12/visualize-this-2--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-2/</link>
+      <pubDate>Fri, 13 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/2013/12/visualize-this-2--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-2/</guid>
+      <description>上篇文章提到了一些有趣的图形，再之前一篇文章讲了用R导入地图的问题。如果把数据和地图结合可以展现更多有意思的结论。这里我们就说说与地图有关的数据可视化，所有素材都来自上文提到的Visualize This一书，但书出版后有些软件版本进行了更新，用原书中的代码会报错，所以我修订了新的代码。
+准备工作： 1、软件安装。本文涉及Python及其插件BeautifulSoup（版本为4）；R及其插件maps(在R中装插件很容易，只需要输入install.packages(maps)就行)。
+2、数据。美国一家商店在美国开店的数据，世界范围内国家生育率的数据，美国失业率的数据。后文会给出链接。
+3、底图。一张美国的SVG底图，可以在这里下到。
+第一张图： 这是一家连锁店全美开店位置图。可以看到它主要集中在东西海岸，数据在这里下载。
+library(maps) #载入maps costcos &amp;lt;- read.csv(&amp;quot;http://book.flowingdata.com/ch08/geocode/costcos-geocoded.csv&amp;quot;, sep = &amp;quot;,&amp;quot;) #载入数据 map(database = &amp;quot;state&amp;quot;, col = &amp;quot;#cccccc&amp;quot;) #载入美国地图，底图设为灰色 symbols(costcos$Longitude, costcos$Latitude, bg = &amp;quot;#e2373f&amp;quot;, fg = &amp;quot;#ffffff&amp;quot;, lwd = 0.5, circles = rep(1, length(costcos$Longitude)), inches = 0.05, add = TRUE) #add=TRUE表示在上张图上叠加symbols；前两个变量代表横纵坐标；bg是填充颜色，fg是框线颜色；lwd是线的粗度；circles是圆，后面的括号代表一个数组，长度为地图上点的数量；inches表示圆的大小  第二张： 第二张图是《2008年联合国人类发展报告》中未成年人生育率（每1000名15-19岁女性中生育数量）。数据可以在这里下载。
+library(maps) #载入maps fertility &amp;lt;- read.csv(&amp;quot;http://book.flowingdata.com/ch08/points/adol-fertility.csv&amp;quot;) map(&#39;world&#39;, fill = FALSE, col = &amp;quot;#cccccc&amp;quot;) #选择世界地图，不填充，底图为灰色 symbols(fertility$longitude, fertility$latitude, circles = sqrt(fertility$ad_fert_rate), add = TRUE, inches = 0.</description>
+    </item>
+    
+    <item>
+      <title>Visualize This 1 | 数据可视化笔记 1</title>
+      <link>/2013/12/visualize-this-1--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-1/</link>
+      <pubDate>Wed, 11 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/2013/12/visualize-this-1--%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0-1/</guid>
+      <description>熟悉NBA的人对上面的这些名字应该不会陌生，这是份NBA球员08-09赛季前50位得分手统计信息可视化，当然图上的长相反应的是它们的数据，与真实长相无关。这张图是我用自己的电脑画的，但数据和代码来自Nathan Yau写Visualize This，一本关于数据可视化方面的好书。作者是UCLA的统计学博士，还在纽约时报、CNN、Mozilla等公司工作过，是个资深的数据迷。正好趁着自己在读这本书，把书中的趣的例子记录下来，后面会陆续加入我自己的理解。
+上图叫Chernoff脸谱，大家可以自行WIKI图的由来，让我们先看看不同的脸部特征在这组数据里代表着什么：
+ 脸的长度-出场次数 脸的宽度-平均出场时间 脸型-场均得分 嘴唇高度-场均投篮命中球数 嘴唇宽度-场均投篮次数 嘴角上扬的曲线-投篮命中率 眼睛高度-场均罚球命中次数 眼睛宽度-场均罚球数 头发高度-罚球命中率 头发宽度-场均三分球命中次数 发型-三分球投篮次数 鼻子高度-进攻篮板 鼻子宽度-防守篮板 耳朵宽度-总篮板 耳朵高度-总助攻  所以我们可以看到雷阿伦的头发特别宽（三分球命中高），霍华德耳朵特别宽（篮板多）。当然这种类型的图娱乐的性质大于其信息呈现。那么不防让我们再来看一张图：
+这是一张关于美国犯罪率的图，数据来源和代码同样来自上面提到的书。图中每个小图代表一个州，这种画法叫Radar Chart或Spider Chart，右下角有图例，应该很容易明白什么意思。
+当然，放上这两张图的目的只是个开始，希望通过自己的学习与分享让更多人感受到数据是好玩儿的。
+说明：
+1、这些可视化都基于R，我用的是R的一个比较好用的集成包RStudio。代码都来自于文中提到的书
+2、第一个图需要基于一个开发包aplpack (由Hans Peter Wolf开发)，安装方式为打开R之后输入install.packages(aplpack), 画图代码如下：
+library(aplpack) #载入这个包 bball &amp;lt;- read.csv(&amp;quot;http://datasets.flowingdata.com/ppg2008.csv&amp;quot;, header = TRUE) #读数据，数据来源于作者网站，也可下载到本地 faces(bball[, 2:16], ncolors = 0, labels = bball$Name) #aplpack提供的face()函数只支持最多15个变量，所以将集合缩小到从第2列到第16列。ncolors = 0表示用黑白图，不输的话可以看到彩色的， labels = bball$Name表示放置bball数据里Name变量名下的数据作为标签  3、第二个图代码如下：
+crime &amp;lt;- read.csv(&amp;quot;http://datasets.flowingdata.com/crimeRateByState-formatted.csv&amp;quot;) row.name(crime) &amp;lt;- crime$state #把第一例移动到行名称 crime &amp;lt;- crime[, 2:7] #选六个变量当维度 stars(crime, flip.</description>
+    </item>
+    
+  </channel>
+</rss>
