@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.21-DEV" />
+
+
+<title>Map Data With R | 用R处理地图信息 - Lei Dong | 董磊</title>
+<meta property="og:title" content="Map Data With R | 用R处理地图信息 - Lei Dong | 董磊">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.10.0/styles/github.min.css' rel='stylesheet' type='text/css'>
+
+
+
+<link rel="stylesheet" href="../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../" class="nav-logo">
+    <img src="../../../images/kiwi.png"
+         width="100"
+         height="100"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../about/">About</a></li>
+    
+    <li><a href="../../../blog/">Blog</a></li>
+    
+    <li><a href="../../../cv/">CV</a></li>
+    
+    <li><a href="../../../design/">Design</a></li>
+    
+    <li><a href="../../../research/">Research</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1 min read</span>
+    
+
+    <h1 class="article-title">Map Data With R | 用R处理地图信息</h1>
+
+    
+    <span class="article-date">2013/10/20</span>
+    
+
+    <div class="article-content">
+      
+
+<p>最近一直在想<strong>地图信息如何处理</strong>，问题有2个，一个是如何获取有坐标的数据信息（人口，经济指标，商铺位置等）。另一个就是如何将这些信息处理后在地图上表达。第一个问题在互联网时代不难得到，难的是获取高质量的数据。第二个问题理论上GIS类的软件都可以做到，但我对GIS一点都不了解。尝试过的ARCGIS体积大，还不支持OS X。</p>
+
+<p>前几天无意中看到了几个R的library的介绍，发现原来用R也可以做GIS类的工作。而且开源软件以开放性吸引了许多优秀的作者写library，极大扩展了软件的使用方式。如果说建筑软件中RHINO是用插件武装起来的话，编程方面Python和R更是用开源包武装到了牙齿，可以正面去与商业软件PK。</p>
+
+<p>对我最有用的地图library大概有这几个：</p>
+
+<p>maps(内置了一些地图，但无中国）</p>
+
+<p>mapdata(有中国地图，但比较老，重庆和四川还没分开）</p>
+
+<p>如何搞定中国的地图请看：<a href="http://yihui.name/cn/2007/09/china-map-at-province-level/">终于搞定了中国分省市地图</a>，<a href="http://cos.name/2009/07/drawing-china-map-using-r/">用R软件绘制中国分省市地图</a></p>
+
+<p>有更好的办法么？特别是在Google Earth用途如此普遍的今天，能否调取Google的API，使用它们的地图数据呢？</p>
+
+<p>答案是肯定的！David Kahle和Hadley Wickham制作了一个ggmap的包，解决了这个问题，极大便利了我等技术文盲。</p>
+
+<p>我们可以试几个功能，更多的功能可以看看?ggmap，有些是需要配合其它的包一起使用。</p>
+
+<h3 id="geocode">geocode</h3>
+
+<pre><code>geocode(&quot;China&quot;)
+Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=China&amp;sensor=false
+Google Maps API Terms of Service : http://developers.google.com/maps/terms
+       lon      lat
+1 104.1954 35.86166
+</code></pre>
+
+<p>返回了中国的经纬度坐标。</p>
+
+<h3 id="mapdist">mapdist</h3>
+
+<pre><code>mapdist('Tsinghua University', 
++  'Beijing University', 'walking')
+             from                 to    m    km    miles seconds
+1 Tsinghua University Beijing University 3329 3.329 2.068641    2458
+   minutes     hours
+1 40.96667 0.6827778
+</code></pre>
+
+<p>从清华到北大竟然3.3公理，要41分钟，估计是从东门算的吧。</p>
+
+<h3 id="get-map">get_map</h3>
+
+<pre><code>library(ggmap)
+library(mapproj)
+map &lt;- get_map(location = 'Beijing', zoom = 8) #以北京为中心，zoom代表类似放大倍数，GOOGLE API好像对此有限制，待查
+</code></pre>
+
+<p><img src="../../../pic/2013/10/plot_bj.jpg" alt="plot_bj" /></p>
+
+<p>京津冀地区出现了。Google地图本身就是个大的GIS系统，如果在上面一行代码里加上 maptype = &lsquo;roadmap&rsquo;就可以得到北京的路网图。</p>
+
+<pre><code>map &lt;- get_map(location = 'Beijing', zoom = 10, maptype = 'roadmap') #北京路网
+</code></pre>
+
+<p>更重要的是基于GOOGLE地图我们还可以叠加各种自己处理过的信息，比如很火的航班数据可视化，在<a href="http://spatialanalysis.co.uk/2012/06/mapping-worlds-biggest-airlines/">Mapping the World&rsquo;s Biggest Airlines</a>里有详细描述，但不是基于Google地图。在<a href="http://xccds1977.blogspot.com/2012/07/blog-post_26.html">中国国内航线信息的可视化</a>中，有一个简化的作法。我也简单画了一个，有时间研究下那个比较FANCY的夜景航线图是怎么做出来的。</p>
+
+<p><img src="../../../pic/2013/10/plot_air.jpg" alt="plot_air" /></p>
+
+<hr />
+
+<p>本文主要学习了博文：</p>
+
+<p><a href="http://cos.name/2013/01/drawing-map-in-r-era/">R时代，你要怎样画地图？</a></p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../index.xml" type="application/rss+xml" target="_blank">RSS</a>
+          </li>
+          <li>
+            <a href="http://www.lizhi.fm/23963/" class="footer-links-kudos">Podcast</a>
+          </li>
+          <li>
+            <a href="http://weibo.com/u/1995374987" class="footer-links-kudos">Weibo</a>
+          </li>
+          <li>
+            <a href="https://" class="footer-links-kudos">LinkedIn</a>
+          </li>
+          <li>
+            <a >2011-2017</a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/highlight.min.js"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

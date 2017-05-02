@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.21-DEV" />
+
+
+<title>Goagent, the Wall | 用goagent到那墙的另一边 - Lei Dong | 董磊</title>
+<meta property="og:title" content="Goagent, the Wall | 用goagent到那墙的另一边 - Lei Dong | 董磊">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../" class="nav-logo">
+    <img src="../../../images/kiwi.png"
+         width="100"
+         height="100"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../about/">About</a></li>
+    
+    <li><a href="../../../blog/">Blog</a></li>
+    
+    <li><a href="../../../cv/">CV</a></li>
+    
+    <li><a href="../../../design/">Design</a></li>
+    
+    <li><a href="../../../research/">Research</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1 min read</span>
+    
+
+    <h1 class="article-title">Goagent, the Wall | 用goagent到那墙的另一边</h1>
+
+    
+    <span class="article-date">2013/12/08</span>
+    
+
+    <div class="article-content">
+      <p><img src="../../../pic/2013/12/goagent.png" alt="goagent" /></p>
+
+<p>题目起的有点隐晦，主要是针对：1）想到F,T,B,W,Y等站点逛逛的同学；2）大陆Gmail人群；3）平时检索资料用google老打不开网页者。不过这群人估计大部分也都有办法实现这一功能。在党和国家的严密封锁下，goagent也不那么流畅了，不过还算能用。</p>
+
+<p>1、保证有个Google的账号。（Gmail,Google+等都行）</p>
+
+<p>2、装个2.6以上版本的Python, Mac自带2.7以上的Python（只要不是太古董的）,Windows可以去Python官网下载一个，Linux及其它开源系统同志可直接忽略前两条。</p>
+
+<p><a href="http://www.python.org/getit/">http://www.python.org/getit/</a> 记得下载版本2.7的就行</p>
+
+<p>3、创建Google App Engine使用ID，地址是<a href="http://appengine.google.com">http://appengine.google.com</a>，其中需要输入一下手机号码验证。</p>
+
+<p>4、创建ID后进入My Applications页面，点Create an Application新建应用。第一栏是要创建的名字（不能与现有的重复），第二栏随便写，第三个选默认。</p>
+
+<p>5、都搞定后下载个goagent的客户端文件，地址自行google，（目前看来这里可以：<a href="http://www.goagent.org/）。解压后找到local文件，然后把用个记事本把proxy.ini中的将appid修改成刚在第4步第一栏创建的名字。">http://www.goagent.org/）。解压后找到local文件，然后把用个记事本把proxy.ini中的将appid修改成刚在第4步第一栏创建的名字。</a></p>
+
+<p>6、接下来Windows系统直接在goagent文件里打开server文件夹，点uploader.bat。根据提示需要输入一下第4步的ID还有gmail邮箱和密码。上传完后可以回到local文件夹，点goagent.exe那个文件就可以使用了。记得在网络中选择使用代理，ip地址是：127.0.0.1，端口为8087。</p>
+
+<p>7、Mac也差不多，但需要在Terminal中操作打开server文件夹中的uploader.zip文件（建议把goagent文件夹改个好记的英语名字放到根目录下，这样可以用cd 改的名字/server/uploader.zip）其余配置参考6，但使用goagent的时候需要打开Terminal输入cd 改的名字/local，然后python proxy.py。Mac设置代理位置在:应用程序-系统偏好设置-网络-高级-代理,web代理和安全web代理都要勾选,并且都要填写ip地址和端口。</p>
+
+<p>8、不用代理的时候记得把网络代理里边的勾去掉，强烈建议Chrome用户装一下SwitchySharp的小插件，这样在浏览器内部可以快速切换是否使用代理。 Goagent一个ID可以每天有一个G的流量，每个Gmail可以申请10个ID。</p>
+
+<p>祝T大早日建成世界一流大学：）</p>
+
+<hr />
+
+<p>2014年9月30日补充：</p>
+
+<p>goagent不好用的时候，需要用一个叫VPN的东西，X宝有卖。</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../index.xml" type="application/rss+xml" target="_blank">RSS</a>
+          </li>
+          <li>
+            <a href="http://www.lizhi.fm/23963/" class="footer-links-kudos">Podcast</a>
+          </li>
+          <li>
+            <a href="http://weibo.com/u/1995374987" class="footer-links-kudos">Weibo</a>
+          </li>
+          <li>
+            <a href="https://" class="footer-links-kudos">LinkedIn</a>
+          </li>
+          <li>
+            <a >2011-2017</a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+    
+
+    
+  </body>
+</html>
+

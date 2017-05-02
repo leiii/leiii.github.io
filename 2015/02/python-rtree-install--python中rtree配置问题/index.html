@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.21-DEV" />
+
+
+<title>Python rtree install | Python中Rtree配置问题 - Lei Dong | 董磊</title>
+<meta property="og:title" content="Python rtree install | Python中Rtree配置问题 - Lei Dong | 董磊">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.10.0/styles/github.min.css' rel='stylesheet' type='text/css'>
+
+
+
+<link rel="stylesheet" href="../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../" class="nav-logo">
+    <img src="../../../images/kiwi.png"
+         width="100"
+         height="100"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../about/">About</a></li>
+    
+    <li><a href="../../../blog/">Blog</a></li>
+    
+    <li><a href="../../../cv/">CV</a></li>
+    
+    <li><a href="../../../design/">Design</a></li>
+    
+    <li><a href="../../../research/">Research</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1 min read</span>
+    
+
+    <h1 class="article-title">Python rtree install | Python中Rtree配置问题</h1>
+
+    
+    <span class="article-date">2015/02/14</span>
+    
+
+    <div class="article-content">
+      <p>最近老是遇到配置Python环境的问题，特别是遇到一些小众一点的包，并没有包括在一些IDE里，所以得各种自己搞。这里写几个常用的方法，主要当做备忘录。</p>
+
+<p>在做空间计算的时候，即便用了numpy，scipy，虽然对于矩阵运算有了很大的提高。但是并没有对类型地理空间数据进行优化，一般要用一个Rtree的算法来减小索引次数，这个算法在Python中有个对应的包。但Rtree需要先装一个叫libspatialindex的包，具体可以去<a href="http://libspatialindex.github.io/install.html">这里下载安装</a>，有种更简单的办法是用<strong>brew</strong>来装。只用一行命令：</p>
+
+<pre><code>brew install spatialindex
+</code></pre>
+
+<p>然后去<a href="https://pypi.python.org/pypi/Rtree/0.8.2">这儿把Rtree下载下来</a>，找到相应目录后安装一下：</p>
+
+<pre><code>python setup.py install
+</code></pre>
+
+<p>用Brew和Pip这两个工具安装管理个种包还是比较方便的，自己的感觉是安一个IDE，相当于把主流的包都装上，然后再用Brew和Pip安一些自己可能用到但又没有那么常用的包。不过装IDE之后有的会修改默认的Python路径，改成自己的，但卸载后并不会删除这个路径，会导致Python出错，如果有类似的情况，把出错信息Google一下一般会有答案。一般是把~/.bash_profile中的IDE注释掉就行了。</p>
+
+<p>找到一个链接，对于怎么配置说得比较明白：<a href="http://matrix.windhunter.net/blog/2012/01/setup-python-env-on-lion-471.html">http://matrix.windhunter.net/blog/2012/01/setup-python-env-on-lion-471.html</a></p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../index.xml" type="application/rss+xml" target="_blank">RSS</a>
+          </li>
+          <li>
+            <a href="http://www.lizhi.fm/23963/" class="footer-links-kudos">Podcast</a>
+          </li>
+          <li>
+            <a href="http://weibo.com/u/1995374987" class="footer-links-kudos">Weibo</a>
+          </li>
+          <li>
+            <a href="https://" class="footer-links-kudos">LinkedIn</a>
+          </li>
+          <li>
+            <a >2011-2017</a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/highlight.min.js"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

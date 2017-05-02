@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.21-DEV" />
+
+
+<title>Mac Install Jekyll | Mac安装Jekyll配置Github - Lei Dong | 董磊</title>
+<meta property="og:title" content="Mac Install Jekyll | Mac安装Jekyll配置Github - Lei Dong | 董磊">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.10.0/styles/github.min.css' rel='stylesheet' type='text/css'>
+
+
+
+<link rel="stylesheet" href="../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../" class="nav-logo">
+    <img src="../../../images/kiwi.png"
+         width="100"
+         height="100"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../about/">About</a></li>
+    
+    <li><a href="../../../blog/">Blog</a></li>
+    
+    <li><a href="../../../cv/">CV</a></li>
+    
+    <li><a href="../../../design/">Design</a></li>
+    
+    <li><a href="../../../research/">Research</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1 min read</span>
+    
+
+    <h1 class="article-title">Mac Install Jekyll | Mac安装Jekyll配置Github</h1>
+
+    
+    <span class="article-date">2015/04/02</span>
+    
+
+    <div class="article-content">
+      
+
+<p>因为电脑硬件换了，所以之前本地配置好的Jekyll什么的都没有了，需要再搞一遍，但<a href="http://jekyllrb.com/docs/installation/">官网上给出的安装说明</a>实在太过简单，十有八九是安装不上的。在这里把“艰辛”的重装过程存个档。</p>
+
+<h3 id="step-1-安装ruby-2-1">Step 1: 安装Ruby 2.1</h3>
+
+<p>OSX 我升级到Yosemite之后自带的是2.0版本的Ruby，Jekyll安装需要2.1以上才行，在Terminal里查看Ruby版本的命令是：</p>
+
+<pre><code>ruby -v
+
+ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin14]
+</code></pre>
+
+<p>在安装Ruby之前需要先装好Xcode（Apple Store有下载，安装包很大），并且在Terminal中装好command line:</p>
+
+<pre><code>xcode-select --install
+</code></pre>
+
+<p>我看网上都推荐两个常用工具来安装管理这些开发环境，一个是Homebrew，安装方法如下：</p>
+
+<pre><code>ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre>
+
+<p>另一个是rvm，可以管理Ruby的版本：</p>
+
+<pre><code>\curl -sSL https://get.rvm.io | bash -s stable
+</code></pre>
+
+<p>需要说明的是，如果从老系统升级到Yosemite的话，装过Homebrew和MacTex Live的电脑升级过程会非常慢。</p>
+
+<p>装完rvm可以查看下需要的安装文件，及有没有什么问题。</p>
+
+<pre><code>rvm requirements
+
+brew doctor
+</code></pre>
+
+<p>不管有没有什么问题，都可以先试试直接开始装，不行再回头Google</p>
+
+<pre><code>rvm install 2.1.2
+</code></pre>
+
+<p>如果要换回2.0.0，只需要输入</p>
+
+<pre><code>rvm use 2.0.0 --default
+</code></pre>
+
+<h3 id="step-2-安装jekyll">Step 2: 安装Jekyll</h3>
+
+<p>这步非常简单</p>
+
+<pre><code>gem install jekyll
+</code></pre>
+
+<h3 id="step-3-配置github">Step 3: 配置Github</h3>
+
+<p>基本思路是要把Github上之前的东西同步回来，涉及到设ssh密钥等一系列过程，官网给出了<a href="https://help.github.com/categories/bootcamp/">不错的讲解</a>。</p>
+
+<p>这里我遇到了一个小问题是，之前用Github的桌面端把Blog文件下载下来了，所以需要关联一下这个文件和远程的Github账号：</p>
+
+<pre><code>git remote add Your_Files https://github.com/Your_Blog_Link
+
+git push blog master
+</code></pre>
+
+<p>输一下Github的用户名，密码就行了。以后还是需要多为开源社区做贡献啊！</p>
+
+<p>每次更新只需要</p>
+
+<pre><code>git add .
+git commit -a -m 'comment'
+git push origin master
+</code></pre>
+
+<hr />
+
+<p><a href="https://help.github.com/articles/error-permission-denied-publickey/">https://help.github.com/articles/error-permission-denied-publickey/</a></p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../index.xml" type="application/rss+xml" target="_blank">RSS</a>
+          </li>
+          <li>
+            <a href="http://www.lizhi.fm/23963/" class="footer-links-kudos">Podcast</a>
+          </li>
+          <li>
+            <a href="http://weibo.com/u/1995374987" class="footer-links-kudos">Weibo</a>
+          </li>
+          <li>
+            <a href="https://" class="footer-links-kudos">LinkedIn</a>
+          </li>
+          <li>
+            <a >2011-2017</a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/highlight.min.js"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="../../../js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script async type="text/javascript"
+  src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+  </body>
+</html>
+

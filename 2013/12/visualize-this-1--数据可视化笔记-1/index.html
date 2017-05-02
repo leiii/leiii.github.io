@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.21-DEV" />
+
+
+<title>Visualize This 1 | 数据可视化笔记 1 - Lei Dong | 董磊</title>
+<meta property="og:title" content="Visualize This 1 | 数据可视化笔记 1 - Lei Dong | 董磊">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.10.0/styles/github.min.css' rel='stylesheet' type='text/css'>
+
+
+
+<link rel="stylesheet" href="../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../" class="nav-logo">
+    <img src="../../../images/kiwi.png"
+         width="100"
+         height="100"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../about/">About</a></li>
+    
+    <li><a href="../../../blog/">Blog</a></li>
+    
+    <li><a href="../../../cv/">CV</a></li>
+    
+    <li><a href="../../../design/">Design</a></li>
+    
+    <li><a href="../../../research/">Research</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1 min read</span>
+    
+
+    <h1 class="article-title">Visualize This 1 | 数据可视化笔记 1</h1>
+
+    
+    <span class="article-date">2013/12/11</span>
+    
+
+    <div class="article-content">
+      <p><img src="../../../pic/2013/12/faces.png" alt="faces" /></p>
+
+<p>熟悉NBA的人对上面的这些名字应该不会陌生，这是份NBA球员08-09赛季前50位得分手统计信息可视化，当然图上的长相反应的是它们的数据，与真实长相无关。这张图是我用自己的电脑画的，但数据和代码来自Nathan Yau写<a href="http://book.flowingdata.com/">Visualize This</a>，一本关于数据可视化方面的好书。作者是UCLA的统计学博士，还在纽约时报、CNN、Mozilla等公司工作过，是个资深的数据迷。正好趁着自己在读这本书，把书中的趣的例子记录下来，后面会陆续加入我自己的理解。</p>
+
+<p>上图叫Chernoff脸谱，大家可以自行WIKI图的由来，让我们先看看不同的脸部特征在这组数据里代表着什么：</p>
+
+<ul>
+<li>脸的长度-出场次数</li>
+<li>脸的宽度-平均出场时间</li>
+<li>脸型-场均得分</li>
+<li>嘴唇高度-场均投篮命中球数</li>
+<li>嘴唇宽度-场均投篮次数</li>
+<li>嘴角上扬的曲线-投篮命中率</li>
+<li>眼睛高度-场均罚球命中次数</li>
+<li>眼睛宽度-场均罚球数</li>
+<li>头发高度-罚球命中率</li>
+<li>头发宽度-场均三分球命中次数</li>
+<li>发型-三分球投篮次数</li>
+<li>鼻子高度-进攻篮板</li>
+<li>鼻子宽度-防守篮板</li>
+<li>耳朵宽度-总篮板</li>
+<li>耳朵高度-总助攻</li>
+</ul>
+
+<p>所以我们可以看到雷阿伦的头发特别宽（三分球命中高），霍华德耳朵特别宽（篮板多）。当然这种类型的图娱乐的性质大于其信息呈现。那么不防让我们再来看一张图：</p>
+
+<p><img src="../../../pic/2013/12/robber.png" alt="robber" /></p>
+
+<p>这是一张关于美国犯罪率的图，数据来源和代码同样来自上面提到的书。图中每个小图代表一个州，这种画法叫Radar Chart或Spider Chart，右下角有图例，应该很容易明白什么意思。</p>
+
+<p>当然，放上这两张图的目的只是个开始，希望通过自己的学习与分享让更多人感受到数据是好玩儿的。</p>
+
+<p><strong>说明：</strong></p>
+
+<p>1、这些可视化都基于R，我用的是R的一个比较好用的集成包RStudio。代码都来自于文中提到的书</p>
+
+<p>2、第一个图需要基于一个开发包aplpack (由Hans Peter Wolf开发)，安装方式为打开R之后输入install.packages(aplpack), 画图代码如下：</p>
+
+<pre><code>library(aplpack) #载入这个包
+
+bball &lt;- read.csv(&quot;http://datasets.flowingdata.com/ppg2008.csv&quot;, header = TRUE) #读数据，数据来源于作者网站，也可下载到本地
+
+faces(bball[, 2:16], ncolors = 0, labels = bball$Name) #aplpack提供的face()函数只支持最多15个变量，所以将集合缩小到从第2列到第16列。ncolors = 0表示用黑白图，不输的话可以看到彩色的， labels = bball$Name表示放置bball数据里Name变量名下的数据作为标签
+</code></pre>
+
+<p>3、第二个图代码如下：</p>
+
+<pre><code>crime &lt;- read.csv(&quot;http://datasets.flowingdata.com/crimeRateByState-formatted.csv&quot;)
+row.name(crime) &lt;- crime$state #把第一例移动到行名称
+crime &lt;- crime[, 2:7] #选六个变量当维度
+stars(crime, flip.labers = FALSE, key.loc = c(15, 1.5)) #flip.labers设置为FALSE，标签不会影响高度
+</code></pre>
+
+<p>作者的<a href="http://www.flowingdata.com">网站</a>也非常有趣，提供了很多鲜活的例子。</p>
+
+<hr />
+
+<p>第二个例子的数据集被作者删除了。（2014.09.30）</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../index.xml" type="application/rss+xml" target="_blank">RSS</a>
+          </li>
+          <li>
+            <a href="http://www.lizhi.fm/23963/" class="footer-links-kudos">Podcast</a>
+          </li>
+          <li>
+            <a href="http://weibo.com/u/1995374987" class="footer-links-kudos">Weibo</a>
+          </li>
+          <li>
+            <a href="https://" class="footer-links-kudos">LinkedIn</a>
+          </li>
+          <li>
+            <a >2011-2017</a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/highlight.min.js"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="../../../js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script async type="text/javascript"
+  src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.21-DEV" />
+
+
+<title>Map Coordinate Transformation | 地图坐标转换 - Lei Dong | 董磊</title>
+<meta property="og:title" content="Map Coordinate Transformation | 地图坐标转换 - Lei Dong | 董磊">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.10.0/styles/github.min.css' rel='stylesheet' type='text/css'>
+
+
+
+<link rel="stylesheet" href="../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../" class="nav-logo">
+    <img src="../../../images/kiwi.png"
+         width="100"
+         height="100"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../about/">About</a></li>
+    
+    <li><a href="../../../blog/">Blog</a></li>
+    
+    <li><a href="../../../cv/">CV</a></li>
+    
+    <li><a href="../../../design/">Design</a></li>
+    
+    <li><a href="../../../research/">Research</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">2 min read</span>
+    
+
+    <h1 class="article-title">Map Coordinate Transformation | 地图坐标转换</h1>
+
+    
+    <span class="article-date">2015/08/15</span>
+    
+
+    <div class="article-content">
+      <p>在天朝搞与地理信息有关的研究不可避免的会遇到坐标转换问题，与世界通用的WGS坐标不同，天朝的地理坐标一般是“有偏”的，据说是为了安全的考虑，但也为我们进行学术研究带来了不小的麻烦。</p>
+
+<p>通常来说，国内常见的坐标有两种，1)最为通行的是在WGS（真实坐标）上进行一次加偏后出来的GCJ坐标，也就是通常叫的“火星坐标”，像高德，国内的google，搜狗地图等都是用的GCJ坐标。2)还有进行二次加偏的，最有代表性的是百度，名之为“百度坐标”。</p>
+
+<p>所以在研究的过程中我们为了将坐标信息匹配到实际地理空间上，需要进行坐标转换，一般都要转成WGS坐标。好在这些坐标转换规则已成为“公开的秘密”。下面一段代码是我从github上综合不同人的方法，用R写成的，欢迎进行学术研究使用。</p>
+
+<pre><code>#Coordinate
+#Lei Dong
+#2015
+#Ref:https://github.com/googollee/eviltransform
+
+
+transformLat &lt;- function (x, y){
+ret &lt;- -100.0 + 2.0*x + 3.0*y + 0.2*y*y + 0.1*x*y + 0.2*sqrt(abs(x))
+ret &lt;- ret + (20.0*sin(6.0*x*pi) + 20.0*sin(2.0*x*pi)) * 2.0 / 3.0
+ret &lt;- ret + (20.0*sin(y*pi) + 40.0*sin(y/3.0*pi)) * 2.0 / 3.0
+ret &lt;- ret + (160.0*sin(y/12.0*pi) + 320*sin(y*pi/30.0)) * 2.0 / 3.0
+return (ret)
+}
+
+
+transformLon &lt;- function (x, y){
+ret &lt;- 300.0 + x + 2.0*y + 0.1*x*x + 0.1*x*y + 0.1*sqrt(abs(x))
+ret &lt;- ret + (20.0*sin(6.0*x*pi) + 20.0*sin(2.0*x*pi)) * 2.0 / 3.0
+ret &lt;- ret + (20.0*sin(x*pi) + 40.0*sin(x/3.0*pi)) * 2.0 / 3.0
+ret &lt;- ret + (150.0*sin(x/12.0*pi) + 300.0*sin(x/30.0*pi)) * 2.0 / 3.0
+return (ret)
+}
+
+
+delta &lt;- function(lat, lng){
+a &lt;- 6378245.0
+ee &lt;- 0.00669342162296594323
+dLat &lt;- transformLat(lng-105.0, lat-35.0)
+dLng &lt;- transformLon(lng-105.0, lat-35.0)
+radLat &lt;- lat / 180.0 * pi
+magic &lt;- sin(radLat)
+magic &lt;- 1 - ee*magic*magic
+sqrtMagic &lt;- sqrt(magic)
+dLat &lt;- (dLat * 180.0) / ((a * (1 - ee)) / (magic * sqrtMagic) * pi)
+dLng &lt;- (dLng * 180.0) / (a / sqrtMagic * cos(radLat) * pi)
+return (c(dLat, dLng))
+}
+
+
+##wgs and gcj
+wgs2gcj &lt;- function(wgsLat, wgsLng){
+if (outOfChina(wgsLat, wgsLng))
+    return (c(wgsLat, wgsLng))
+else
+    d &lt;- delta(wgsLat, wgsLng)
+    return (c(wgsLat + d[1], wgsLng + d[2]))
+}
+
+
+gcj2wgs &lt;- function(gcjLat, gcjLng){
+if (outOfChina(gcjLat, gcjLng))
+    return (c(gcjLat, gcjLng))
+else
+    d &lt;- delta(gcjLat, gcjLng)
+    return (c(gcjLat - d[1], gcjLng - d[2]))
+}
+
+
+
+##distance
+distance &lt;- function(latA, lngA, latB, lngB) {
+earthR &lt;- 6371000;
+x &lt;- cos(latA*pi/180) * cos(latB*pi/180) * cos((lngA-lngB)*pi/180)
+y &lt;- sin(latA*pi/180) * sin(latB*pi/180)
+s &lt;- x + y
+if (s &gt; 1)
+    s &lt;- 1
+if (s &lt; -1)
+    s &lt;- -1
+alpha &lt;- acos(s)
+distance &lt;- alpha * earthR
+return (distance)
+}
+</code></pre>
+
+<hr />
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../index.xml" type="application/rss+xml" target="_blank">RSS</a>
+          </li>
+          <li>
+            <a href="http://www.lizhi.fm/23963/" class="footer-links-kudos">Podcast</a>
+          </li>
+          <li>
+            <a href="http://weibo.com/u/1995374987" class="footer-links-kudos">Weibo</a>
+          </li>
+          <li>
+            <a href="https://" class="footer-links-kudos">LinkedIn</a>
+          </li>
+          <li>
+            <a >2011-2017</a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/highlight.min.js"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

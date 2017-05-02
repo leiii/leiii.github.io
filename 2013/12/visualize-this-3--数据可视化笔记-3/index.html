@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.21-DEV" />
+
+
+<title>Visualize This 3 | 数据可视化笔记 3 - Lei Dong | 董磊</title>
+<meta property="og:title" content="Visualize This 3 | 数据可视化笔记 3 - Lei Dong | 董磊">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.10.0/styles/github.min.css' rel='stylesheet' type='text/css'>
+
+
+
+<link rel="stylesheet" href="../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../" class="nav-logo">
+    <img src="../../../images/kiwi.png"
+         width="100"
+         height="100"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../about/">About</a></li>
+    
+    <li><a href="../../../blog/">Blog</a></li>
+    
+    <li><a href="../../../cv/">CV</a></li>
+    
+    <li><a href="../../../design/">Design</a></li>
+    
+    <li><a href="../../../research/">Research</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1 min read</span>
+    
+
+    <h1 class="article-title">Visualize This 3 | 数据可视化笔记 3</h1>
+
+    
+    <span class="article-date">2013/12/21</span>
+    
+
+    <div class="article-content">
+      
+
+<h3 id="一-饼图">一、饼图+</h3>
+
+<p>这次让我们试PPT中经常出现的饼图。</p>
+
+<p>饼图一般用来<strong>展示各部分在总体中所占的百分比，适用于数据不多的情况</strong>。虽然饼图大家用的非常多，但通常是从EXCEL中直接生成，用好的并不常见，因为大家容易忽视几个问题：</p>
+
+<ol>
+<li><p><strong>饼图的中心点区域线和颜色过于集中，不利于视觉舒适</strong>。</p></li>
+
+<li><p>EXCEL默认的饼图配色大家见的太多后容易审美疲劳。我们可以用一种饼图的变体来解决一下上面的问题，“面包圈”图闪亮登场。</p></li>
+</ol>
+
+<p><img src="../../../pic/2013/12/bingtu.png" alt="bingtu" /></p>
+
+<p>资料来源：TU DelftX</p>
+
+<p>我们可以看到，面包圈图比饼图可以放相对更多的数据而不会在中心产生过度集中现象，没有了中心集中，也有利于颜色的搭配。这种图制作也非常简单，在原来的饼图中间画个白色的圆形就行了：）</p>
+
+<h3 id="二-heatmap">二、HeatMap</h3>
+
+<p>有时候数据指标比较多的情况下，很难用简单的图表来表达，这时候可以试试HeatMap，可以在二维平面上展示矩阵形式的数据。在这个例子里我们还是用到了NBA数据，简单说就是展示了不同球员的各项指标，于之前文章中提到的“脸图”不同，这种展示方式数据更加直观。在本例中洋红到浅蓝表示数据值由高到低。</p>
+
+<p><img src="../../../pic/2013/12/heatmap.png" alt="heatmap" /></p>
+
+<pre><code>bball &lt;- read.csv(&quot;http://datasets.flowingdata.com/ppg2008.csv&quot;, header = TRUE)
+
+bball &lt;- bball[order(bball$PTS, decreasing = FALSE),]  #按得分PTS 降序排列数据
+
+row.names(bball) &lt;- bball$Name 
+ball &lt;- bball[, 2:20]
+
+bball_matrix &lt;- data.matrix(bball) #数据必须转成矩阵型
+
+bball_heatmap &lt;- heatmap(bball_matrix, Rowv=NA, Colv = NA, 
+                col = cm.colors(256), scale=&quot;column&quot;, margins = c(5,10))    #cm.colors(256)表示从洋红到蓝（cm是cmyk里的两个词）
+</code></pre>
+
+<p>注：代码及数据来源<Visualize This>一书</p>
+
+<p>断断续续写到第三篇笔记了，想列了提纲，看看以后可以写点啥，也欢迎大家多多补充。</p>
+
+<ul>
+<li>0、用到的软件的最基本介绍</li>
+<li>1、动态数据表达（1，2）</li>
+<li>2、数据收集方式</li>
+<li>3、数据整理方式及工具（1，2）</li>
+<li>4、与地理信息相关的图形表达（1，2，3）</li>
+</ul>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../index.xml" type="application/rss+xml" target="_blank">RSS</a>
+          </li>
+          <li>
+            <a href="http://www.lizhi.fm/23963/" class="footer-links-kudos">Podcast</a>
+          </li>
+          <li>
+            <a href="http://weibo.com/u/1995374987" class="footer-links-kudos">Weibo</a>
+          </li>
+          <li>
+            <a href="https://" class="footer-links-kudos">LinkedIn</a>
+          </li>
+          <li>
+            <a >2011-2017</a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/highlight.min.js"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="../../../js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script async type="text/javascript"
+  src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+  </body>
+</html>
+
