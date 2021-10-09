@@ -3,27 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/about/</loc>
+    <lastmod>2021-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/cv/</loc>
+    <lastmod>2021-10-05T21:48:51-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/research/</loc>
+    <lastmod>2021-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/2017/04/hello-world/</loc>
     <lastmod>2017-04-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/cv/</loc>
-    <lastmod>2016-05-05T21:48:51-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/about/</loc>
-    <lastmod>2016-05-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/design/</loc>
-    <lastmod>2016-05-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/research/</loc>
     <lastmod>2016-05-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -391,7 +391,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2021-10-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

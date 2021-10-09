@@ -6,10 +6,43 @@
     <description>Recent content on Lei Dong | 董磊</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 30 Apr 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 08 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Fri, 08 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Lei Dong | Bio My research interests are complexity systems and computational social science. I develop and apply empirical and theoretical methods in urban areas, focusing on human mobility, scaling laws, and mobile big data.
+I received my Ph.D. at Tsinghua University and completed postdoctoral training at Peking University and MIT. During my Ph.D. study, I also worked at Baidu Research for two years as a data scientist.
+As an interdisciplinary researcher, my research has been published in general journals including Nature, Nature Communications, and PNAS, as well as field journals and conferences including Remote Sensing of Environment and AAAI, and has also been applied in institutions as UNDP and Development Research Center of the State Council of China.</description>
+    </item>
+    
+    <item>
+      <title>Curriculum Vitae</title>
+      <link>/cv/</link>
+      <pubDate>Tue, 05 Oct 2021 21:48:51 -0700</pubDate>
+      
+      <guid>/cv/</guid>
+      <description>Lei Dong Contact Information Email: arch.dongl(at)gmail.com | Homepage: donglei.org | Weibo: @LEI_DONG
+Research Interests City, complexy systems, computational social science, data science
+Academic Positions  2018-2020, Post-Doctoral Associate, Senseable City Lab and Sustainable Urbanization Lab, MIT 2017-2020, Post-Doctoral Fellow, School of Earth and Space Sciences, Peking University  Industry Experiences  2021- , Founder, Maptable  A new database, mapping tool, and data marketplace created for everyone  2017-2021, Co-founder, QuantUrban  Data science for urban development  2017-2018, Co-founder, Stardust.</description>
+    </item>
+    
+    <item>
+      <title>Research</title>
+      <link>/research/</link>
+      <pubDate>Tue, 05 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/research/</guid>
+      <description>My research interests and topics.
+Human Mobility and Urban Structure i. Universal laws of human mobility  frequency | visitation | preferential exploration and preferential return | central place theory   The universal visitation law of human mobility. Nature (2021).
+ Markus Schläpfer+, Lei Dong+*, Kevin O&amp;rsquo;Keeffe+, Paolo Santi, Michael Szell, Hadrien Salat, Samuel Anklesaria, Mohammad Vazifeh, Carlo Ratti, and Geoffrey B. West News &amp;amp; Veiws | Project Web | Preprint | Slides | Data and Code  Wanderlust: 3D impressionism in human journeys.</description>
+    </item>
     
     <item>
       <title>Hello World</title>
@@ -21,26 +54,6 @@
     </item>
     
     <item>
-      <title>Curriculum Vitae</title>
-      <link>/cv/</link>
-      <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
-      
-      <guid>/cv/</guid>
-      <description>Lei Dong Contact Information Email: arch.dongl(at)gmail.com | Homepage: donglei.org | Weibo: @LEI_DONG
-Research Interests Urban studies, spatial analysis, data science, computational social science, complex system, visualization
-Academic Positions  2018- , Post-Doctoral Associate, Senseable City Lab and China Future City Lab, Department of Urban Studies and Planning, MIT 2017-2018, Post-Doctoral Fellow, School of Earth and Space Sciences, Peking University  Education  2011-2017, Ph.D., School of Architecture, Tsinghua University  Dissertation: Mobile Phone Location Data and Urban Studies [Download, 13.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>/about/</link>
-      <pubDate>Thu, 05 May 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/about/</guid>
-      <description>Lei Dong I recieved my Ph.D. at the School of Architecture at Tsinghua University. My research interests are data-driven urban studies and computational social science. My Ph.D. dissertation is on Mobile Phone Data and Urban Studies. I received my bachelor&amp;rsquo;s degree in Architecture in 2011 at Tsinghua University, and a dual bachelor&amp;rsquo;s degree in Economics in 2012 also at Tsinghua University. I worked at Baidu Research from 2015 to 2017 as a data scientist, and developed two projects (Mobimetrics; Big data and poverty reduction).</description>
-    </item>
-    
-    <item>
       <title>Design</title>
       <link>/design/</link>
       <pubDate>Thu, 05 May 2016 00:00:00 +0000</pubDate>
@@ -48,17 +61,6 @@ Academic Positions  2018- , Post-Doctoral Associate, Senseable City Lab and Chin
       <guid>/design/</guid>
       <description>My architecture/urban design works.
 Completed Works | Making Lamp  Personal CNC, Voronoi 2010 Year  Furniture  with Xuhui Zhang, Yunzhu Wang, Junsheng Fu, and Chen Xu Advisor: Terrence Curry Honeycomb Board, Plywood, CNC, Rhino 2010 Year  Bridge  with Xi Pan, Yayun Liu, Qiang Zhang, et al. Location: Xianyuan Village, Yunnan Province Antiseptic Wood, Steel, Stone 2011 Year  Solar House  with Junjie Li, Hong Zhang, Huanyu Chen, et al.</description>
-    </item>
-    
-    <item>
-      <title>Research</title>
-      <link>/research/</link>
-      <pubDate>Thu, 05 May 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/research/</guid>
-      <description>My research interests and topics.
-Mapping Population Distribution with Mobile Phone Data i. Home and Work  Stay Points | Home-Work Location | Mobile Phone Data | Machine Learning  * Population density of Beijing
- Paper in preparation  ii. Dynamic Distribution  Dynamic Distribution | Rhythm | Urban Sensing   Lei Dong, Sicong Chen, Yunsheng Cheng, Zhengwei Wu, Chao Li, and Haishan Wu. 2017. Measuring economic activity in China with mobile big data.</description>
     </item>
     
     <item>
